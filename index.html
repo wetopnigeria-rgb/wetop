@@ -29,6 +29,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K4QRBDHH6Y"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-K4QRBDHH6Y');
+    </script>
+    
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
@@ -1472,6 +1481,69 @@
             display: block;
         }
         
+        /* Blog Modal Styles */
+        .blog-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 20px;
+        }
+        
+        .blog-modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .blog-modal-content h2 {
+            margin-bottom: 20px;
+            color: var(--deep-brown);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .blog-modal-content .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--deep-brown);
+        }
+        
+        .blog-modal-body {
+            line-height: 1.6;
+            color: var(--dark-grey);
+        }
+        
+        .blog-modal-body h4 {
+            margin: 20px 0 10px;
+            color: var(--deep-brown);
+        }
+        
+        .blog-modal-body ul, .blog-modal-body ol {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        .blog-modal-body li {
+            margin-bottom: 8px;
+        }
+        
         /* WhatsApp Chat Button */
         .whatsapp-chat {
             position: fixed;
@@ -1650,6 +1722,91 @@
             color: #721c24;
             border: 1px solid #f5c6cb;
             display: block;
+        }
+        
+        /* Blog Section Styles */
+        .blog-section {
+            padding: 80px 0;
+            background-color: var(--light-grey);
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .blog-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-image {
+            height: 200px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--accent-teal) 0%, var(--light-teal) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .blog-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--dark-grey);
+        }
+        
+        .blog-meta i {
+            color: var(--accent-teal);
+        }
+        
+        .blog-content h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            line-height: 1.4;
+        }
+        
+        .blog-content p {
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .blog-tag {
+            background-color: var(--light-grey);
+            color: var(--dark-grey);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
         }
         
         /* Footer */
@@ -2159,6 +2316,7 @@
                     <li><a href="#" class="nav-link" data-page="divisions">Divisions</a></li>
                     <li><a href="#" class="nav-link" data-page="products">Products</a></li>
                     <li><a href="#" class="nav-link" data-page="wholesale">Wholesale</a></li>
+                    <li><a href="#" class="nav-link" data-page="blog">Blog</a></li>
                     <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
                 </ul>
             </nav>
@@ -3410,6 +3568,354 @@
         </section>
     </div>
 
+    <!-- Blog Page -->
+    <div id="blog-page" class="page-content">
+        <section class="blog-section">
+            <div class="container">
+                <h2 class="section-title">Wetop Nigeria Blog</h2>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto 50px;">Stay updated with industry insights, product news, and business strategies from Wetop Nigeria.</p>
+                
+                <div class="blog-grid">
+                    <!-- Blog Post 1 -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> March 15, 2025</span>
+                                <span><i class="far fa-clock"></i> 5 min read</span>
+                            </div>
+                            <h3>The Ultimate Guide to Choosing Construction Adhesives in Nigeria</h3>
+                            <p>Discover how to select the right adhesive for your construction projects, understand different adhesive types, and learn why Wetop PVC Clear Gum stands out in the market.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">Construction</span>
+                                <span class="blog-tag">Adhesives</span>
+                                <span class="blog-tag">Guide</span>
+                            </div>
+                            <button class="btn btn-primary read-more-btn" data-blog="1">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 2 -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <i class="fas fa-oil-can"></i>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> March 10, 2025</span>
+                                <span><i class="far fa-clock"></i> 4 min read</span>
+                            </div>
+                            <h3>Maximizing Engine Performance: The Complete Guide to Engine Oil Selection</h3>
+                            <p>Learn how to choose the right engine oil viscosity for Nigerian climate conditions and discover why Royal Oil Engine Oil provides superior protection for your vehicle.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">Automotive</span>
+                                <span class="blog-tag">Engine Oil</span>
+                                <span class="blog-tag">Maintenance</span>
+                            </div>
+                            <button class="btn btn-primary read-more-btn" data-blog="2">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 3 -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <i class="fas fa-motorcycle"></i>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> March 5, 2025</span>
+                                <span><i class="far fa-clock"></i> 6 min read</span>
+                            </div>
+                            <h3>Starting a Profitable Tricycle Transportation Business in Nigeria</h3>
+                            <p>Explore the opportunities in Nigeria's growing tricycle transportation sector and learn how RONA TRICYCLE Road Master can be your ticket to business success.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">Transportation</span>
+                                <span class="blog-tag">Business</span>
+                                <span class="blog-tag">Tricycle</span>
+                            </div>
+                            <button class="btn btn-primary read-more-btn" data-blog="3">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 4 -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> February 28, 2025</span>
+                                <span><i class="far fa-clock"></i> 7 min read</span>
+                            </div>
+                            <h3>Export Opportunities: Nigerian Charcoal in the Global Market</h3>
+                            <p>Discover the growing demand for Nigerian charcoal in international markets and learn how Wetop Nigeria's premium charcoal meets global quality standards.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">Export</span>
+                                <span class="blog-tag">Charcoal</span>
+                                <span class="blog-tag">International</span>
+                            </div>
+                            <button class="btn btn-primary read-more-btn" data-blog="4">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 5 -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <i class="fas fa-smoking"></i>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> February 22, 2025</span>
+                                <span><i class="far fa-clock"></i> 5 min read</span>
+                            </div>
+                            <h3>Quality Matters: Why Premium Rolling Papers Make a Difference</h3>
+                            <p>Understand the difference between premium and standard rolling papers and discover why Wetop's RAW and Luxury papers deliver superior smoking experiences.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">Lifestyle</span>
+                                <span class="blog-tag">Quality</span>
+                                <span class="blog-tag">Rolling Papers</span>
+                            </div>
+                            <button class="btn btn-primary read-more-btn" data-blog="5">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 6 -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> February 15, 2025</span>
+                                <span><i class="far fa-clock"></i> 8 min read</span>
+                            </div>
+                            <h3>Wholesale Business Success: Strategies for Nigerian Distributors</h3>
+                            <p>Learn proven strategies for building a successful wholesale distribution business in Nigeria and discover how Wetop's partnership program can accelerate your growth.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">Business</span>
+                                <span class="blog-tag">Wholesale</span>
+                                <span class="blog-tag">Strategy</span>
+                            </div>
+                            <button class="btn btn-primary read-more-btn" data-blog="6">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 7 -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> February 10, 2025</span>
+                                <span><i class="far fa-clock"></i> 6 min read</span>
+                            </div>
+                            <h3>Waterproofing Solutions for Nigerian Buildings: A Complete Guide</h3>
+                            <p>Explore effective waterproofing techniques for Nigerian buildings and discover how Wetop's Waterproof Coating Adhesive provides long-lasting protection.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">Construction</span>
+                                <span class="blog-tag">Waterproofing</span>
+                                <span class="blog-tag">Solutions</span>
+                            </div>
+                            <button class="btn btn-primary read-more-btn" data-blog="7">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 8 -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <i class="fas fa-glue"></i>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> February 5, 2025</span>
+                                <span><i class="far fa-clock"></i> 5 min read</span>
+                            </div>
+                            <h3>Beyond Basic Repairs: Creative Uses for Epoxy Glue in Daily Life</h3>
+                            <p>Discover innovative ways to use epoxy glue beyond simple repairs, from crafting to home improvement projects, with Wetop Epoxy Glue.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">DIY</span>
+                                <span class="blog-tag">Epoxy</span>
+                                <span class="blog-tag">Creative</span>
+                            </div>
+                            <button class="btn btn-primary read-more-btn" data-blog="8">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 9 -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> January 28, 2025</span>
+                                <span><i class="far fa-clock"></i> 4 min read</span>
+                            </div>
+                            <h3>Super Glue Hacks: 10 Unexpected Uses for Wetop Oily Super Glue</h3>
+                            <p>Learn surprising ways to use super glue in everyday situations, from quick fixes to creative solutions you never thought possible.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">Hacks</span>
+                                <span class="blog-tag">Super Glue</span>
+                                <span class="blog-tag">Tips</span>
+                            </div>
+                            <button class="btn btn-primary read-more-btn" data-blog="9">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 10 -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> January 22, 2025</span>
+                                <span><i class="far fa-clock"></i> 7 min read</span>
+                            </div>
+                            <h3>Automotive Maintenance in Nigeria: Essential Tips for Vehicle Longevity</h3>
+                            <p>Discover essential maintenance tips for Nigerian vehicle owners and learn how proper gasket maintenance with Sindy Clear Gasket Maker can prevent costly repairs.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">Automotive</span>
+                                <span class="blog-tag">Maintenance</span>
+                                <span class="blog-tag">Gasket</span>
+                            </div>
+                            <button class="btn btn-primary read-more-btn" data-blog="10">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 11 -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> January 15, 2025</span>
+                                <span><i class="far fa-clock"></i> 6 min read</span>
+                            </div>
+                            <h3>Industrial Sealants: Choosing the Right Product for Your Application</h3>
+                            <p>Understand the different types of industrial sealants and learn how Kuda Black Gasket Maker provides superior performance in demanding industrial environments.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">Industrial</span>
+                                <span class="blog-tag">Sealants</span>
+                                <span class="blog-tag">Applications</span>
+                            </div>
+                            <button class="btn btn-primary read-more-btn" data-blog="11">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 12 -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> January 8, 2025</span>
+                                <span><i class="far fa-clock"></i> 5 min read</span>
+                            </div>
+                            <h3>Sustainable Energy Solutions: The Role of Quality Firewood in Nigerian Homes</h3>
+                            <p>Explore how quality hardwood firewood from Wetop Nigeria provides sustainable energy solutions for Nigerian households and businesses.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">Energy</span>
+                                <span class="blog-tag">Sustainability</span>
+                                <span class="blog-tag">Firewood</span>
+                            </div>
+                            <button class="btn btn-primary read-more-btn" data-blog="12">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 13 - NEW INVESTMENT ARTICLE -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> January 2, 2025</span>
+                                <span><i class="far fa-clock"></i> 9 min read</span>
+                            </div>
+                            <h3>Invest in Nigeria Through Wetop: The Smart Alternative to Traditional Stocks</h3>
+                            <p>Discover how investing in Wetop Nigeria's product portfolio offers better returns than traditional stock markets with tangible assets and guaranteed returns.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">Investment</span>
+                                <span class="blog-tag">Nigeria</span>
+                                <span class="blog-tag">Stocks</span>
+                            </div>
+                            <button class="btn btn-primary read-more-btn" data-blog="13">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 14 - NEW INVESTMENT ARTICLE -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> December 28, 2024</span>
+                                <span><i class="far fa-clock"></i> 8 min read</span>
+                            </div>
+                            <h3>Invest in Real Life Stocks: Why Wetop Products Yield Better Dividends</h3>
+                            <p>Learn why investing in tangible products like Wetop's industrial supplies offers more stable returns than volatile stock markets with money-back guarantees.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">Real Life Stocks</span>
+                                <span class="blog-tag">Dividends</span>
+                                <span class="blog-tag">Investment</span>
+                            </div>
+                            <button class="btn btn-primary read-more-btn" data-blog="14">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 15 - NEW INVESTMENT ARTICLE -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> December 22, 2024</span>
+                                <span><i class="far fa-clock"></i> 10 min read</span>
+                            </div>
+                            <h3>Buying Wetop Like Stock/Shares: Yields Dividend with Money Back Guaranty</h3>
+                            <p>Explore Wetop's innovative investment model where you can buy product shares that yield regular dividends with complete money-back guarantee protection.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">Shares</span>
+                                <span class="blog-tag">Dividends</span>
+                                <span class="blog-tag">Money Back Guarantee</span>
+                            </div>
+                            <button class="btn btn-primary read-more-btn" data-blog="15">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 16 - NEW INVESTMENT ARTICLE -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> December 15, 2024</span>
+                                <span><i class="far fa-clock"></i> 7 min read</span>
+                            </div>
+                            <h3>From ₦50,000 to ₦500,000: Real Stories of Wetop Investors</h3>
+                            <p>Read inspiring stories of Nigerians who transformed their financial situations through strategic investments in Wetop Nigeria's product portfolio.</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">Success Stories</span>
+                                <span class="blog-tag">Investment</span>
+                                <span class="blog-tag">Wealth Building</span>
+                            </div>
+                            <button class="btn btn-primary read-more-btn" data-blog="16">Read More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
     <!-- Contact Page -->
     <div id="contact-page" class="page-content">
         <section class="contact-page">
@@ -3511,6 +4017,7 @@
                         <li><a href="#" class="nav-link" data-page="divisions">Divisions</a></li>
                         <li><a href="#" class="nav-link" data-page="products">Products</a></li>
                         <li><a href="#" class="nav-link" data-page="wholesale">Wholesale</a></li>
+                        <li><a href="#" class="nav-link" data-page="blog">Blog</a></li>
                         <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
                     </ul>
                 </div>
@@ -3531,7 +4038,7 @@
 
     <!-- WhatsApp Chat Button -->
     <div class="whatsapp-chat">
-        <a href="https://wa.me/2349167577432?text=Hello%20Wetop%20Nigeria%2C%20I%27m%20interested%20in%20your%20products%20and%20services." target="_blank">
+        <a href="https://api.whatsapp.com/send?phone=2349167577432&text=Hello%20Wetop%20Nigeria%2C%20I%27m%20interested%20in%20your%20products%20and%20services." target="_blank">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
         </a>
     </div>
@@ -3862,7 +4369,7 @@
                 const productName = btn.getAttribute('data-product');
                 const message = `Hello Wetop Nigeria, I'm interested in ${productName}. Can you please provide me with more information about pricing, specifications, and availability?`;
                 const encodedMessage = encodeURIComponent(message);
-                window.open(`https://wa.me/2349167577432?text=${encodedMessage}`, '_blank');
+                window.open(`https://api.whatsapp.com/send?phone=2349167577432&text=${encodedMessage}`, '_blank');
             });
         });
 
@@ -4041,7 +4548,7 @@
             
             const message = `Hello Wetop Nigeria, I'm interested in purchasing ${quantity} units of ${productName}. The calculated total is ${total}. Can you please provide me with more details?`;
             const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/2349167577432?text=${encodedMessage}`, '_blank');
+            window.open(`https://api.whatsapp.com/send?phone=2349167577432&text=${encodedMessage}`, '_blank');
         });
         
         // ROI Calculator
@@ -4198,6 +4705,1615 @@
         // Update market insights on page load and every 24 hours
         updateMarketInsights();
         setInterval(updateMarketInsights, 24 * 60 * 60 * 1000); // 24 hours
+        
+        // Blog Read More Button Functionality - FIXED
+        const readMoreBtns = document.querySelectorAll('.read-more-btn');
+        
+        readMoreBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const blogId = btn.getAttribute('data-blog');
+                const blogCard = btn.closest('.blog-card');
+                const blogTitle = blogCard.querySelector('h3').textContent;
+                
+                // Create detailed blog content based on the blog ID
+                const blogContent = getBlogContent(blogId);
+                
+                // Show modal with full blog content
+                showBlogModal(blogTitle, blogContent);
+            });
+        });
+        
+        // Function to get detailed blog content
+        function getBlogContent(blogId) {
+            const blogContents = {
+                "1": `
+                    <p>Choosing the right construction adhesive is crucial for the success and longevity of any building project. In Nigeria's diverse climate conditions, factors like humidity, temperature fluctuations, and material compatibility play significant roles in adhesive performance.</p>
+                    
+                    <h4>Types of Construction Adhesives</h4>
+                    <p>There are several types of adhesives commonly used in construction:</p>
+                    <ul>
+                        <li><strong>PVC Adhesives:</strong> Ideal for plumbing applications, PVC pipes, and fittings</li>
+                        <li><strong>Epoxy Resins:</strong> Excellent for bonding metals, ceramics, and concrete</li>
+                        <li><strong>Polyurethane Adhesives:</strong> Flexible bonds suitable for materials with different expansion rates</li>
+                        <li><strong>Construction Glues:</strong> Multi-purpose adhesives for various materials</li>
+                    </ul>
+                    
+                    <h4>Why Wetop PVC Clear Gum Stands Out</h4>
+                    <p>Wetop PVC Clear Gum offers several advantages for Nigerian construction projects:</p>
+                    <ul>
+                        <li>Quick setting time suitable for fast-paced construction environments</li>
+                        <li>Excellent resistance to humidity and temperature changes</li>
+                        <li>Strong bonding strength that withstands structural stresses</li>
+                        <li>Clear finish that doesn't affect the appearance of finished work</li>
+                        <li>Available in convenient sizes for both small repairs and large projects</li>
+                    </ul>
+                    
+                    <p>For professional construction projects or DIY home improvements, Wetop PVC Clear Gum provides reliable performance that meets the demanding conditions of Nigerian construction environments.</p>
+                `,
+                "2": `
+                    <p>Engine oil is the lifeblood of any vehicle, and selecting the right viscosity and type is essential for optimal engine performance and longevity. In Nigeria's varied climate conditions, from the humid coastal regions to the hotter northern areas, engine oil selection becomes even more critical.</p>
+                    
+                    <h4>Understanding Viscosity Ratings</h4>
+                    <p>Engine oil viscosity is indicated by numbers like 5W-30 or 15W-40:</p>
+                    <ul>
+                        <li><strong>The first number (with W):</strong> Indicates cold-weather performance - lower numbers mean better cold starts</li>
+                        <li><strong>The second number:</strong> Indicates viscosity at operating temperature - higher numbers mean thicker oil at high temperatures</li>
+                    </ul>
+                    
+                    <h4>Choosing the Right Oil for Nigerian Conditions</h4>
+                    <p>For most Nigerian vehicles, these viscosity grades work well:</p>
+                    <ul>
+                        <li><strong>5W-30:</strong> Excellent for newer vehicles with tighter engine tolerances</li>
+                        <li><strong>10W-40:</strong> Good all-around choice for most Nigerian conditions</li>
+                        <li><strong>15W-40:</strong> Ideal for older engines and high-mileage vehicles</li>
+                        <li><strong>20W-50:</strong> Best for very hot conditions and heavy-duty applications</li>
+                    </ul>
+                    
+                    <h4>Royal Oil Engine Oil Advantages</h4>
+                    <p>Royal Oil Engine Oil is specifically formulated for Nigerian driving conditions:</p>
+                    <ul>
+                        <li>Enhanced thermal stability to withstand high temperatures</li>
+                        <li>Superior detergents that keep engines clean</li>
+                        <li>Excellent wear protection for extended engine life</li>
+                        <li>Reduced oil consumption between changes</li>
+                        <li>Available in multiple viscosity grades and packaging sizes</li>
+                    </ul>
+                    
+                    <p>Regular oil changes with the right Royal Oil formulation can significantly extend your engine's life and improve fuel efficiency.</p>
+                `,
+                "3": `
+                    <p>The tricycle transportation business has become a vital part of Nigeria's urban and semi-urban mobility ecosystem. With increasing urbanization and the need for affordable transportation options, tricycles offer an excellent business opportunity for entrepreneurs.</p>
+                    
+                    <h4>Market Potential</h4>
+                    <p>Tricycles serve multiple markets in Nigeria:</p>
+                    <ul>
+                        <li><strong>Intra-city transportation:</strong> Moving people within neighborhoods and business districts</li>
+                        <li><strong>Last-mile connectivity:</strong> Connecting main transportation hubs to final destinations</li>
+                        <li><strong>Goods transportation:</strong> Small-scale logistics and delivery services</li>
+                        <li><strong>Specialized services:</strong> School runs, market trips, and community transportation</li>
+                    </ul>
+                    
+                    <h4>Why RONA TRICYCLE Road Master</h4>
+                    <p>The RONA TRICYCLE Road Master offers several advantages for business operators:</p>
+                    <ul>
+                        <li><strong>Durable Construction:</strong> Built with robust materials to withstand Nigerian road conditions</li>
+                        <li><strong>Fuel Efficiency:</strong> Optimized engines that reduce operational costs</li>
+                        <li><strong>Passenger Comfort:</strong> Ergonomic design with comfortable seating</li>
+                        <li><strong>Maintenance Friendly:</strong> Easy to service with readily available parts</li>
+                        <li><strong>Versatile Configurations:</strong> Available in 4-seater and 7-seater options</li>
+                    </ul>
+                    
+                    <h4>Business Setup Guide</h4>
+                    <p>Starting a tricycle transportation business involves several steps:</p>
+                    <ol>
+                        <li>Market research and route identification</li>
+                        <li>Business registration and necessary permits</li>
+                        <li>Vehicle acquisition and customization</li>
+                        <li>Driver recruitment and training</li>
+                        <li>Insurance and safety compliance</li>
+                        <li>Marketing and customer acquisition</li>
+                    </ol>
+                    
+                    <p>With proper planning and the right equipment like the RONA TRICYCLE Road Master, entrepreneurs can build a profitable and sustainable transportation business.</p>
+                `,
+                "4": `
+                    <p>Nigerian charcoal has gained significant attention in international markets due to its high quality and sustainable sourcing practices. With growing global demand for eco-friendly energy sources, Nigerian charcoal presents a lucrative export opportunity for local businesses.</p>
+                    
+                    <h4>Global Market Demand</h4>
+                    <p>The international charcoal market is experiencing steady growth, driven by:</p>
+                    <ul>
+                        <li>Increasing preference for natural cooking fuels in developed countries</li>
+                        <li>Rising demand for barbecue and outdoor cooking products</li>
+                        <li>Growing awareness of sustainable energy sources</li>
+                        <li>Expansion of ethnic food markets worldwide</li>
+                    </ul>
+                    
+                    <h4>Why Nigerian Charcoal Stands Out</h4>
+                    <p>Nigerian charcoal offers several advantages in the global market:</p>
+                    <ul>
+                        <li><strong>High Heat Output:</strong> Produces more heat per unit compared to many alternatives</li>
+                        <li><strong>Long Burning Time:</strong> Lasts longer than charcoal from other regions</li>
+                        <li><strong>Sustainable Sourcing:</strong> Wetop Nigeria ensures responsible forest management</li>
+                        <li><strong>Consistent Quality:</strong> Uniform size and composition for reliable performance</li>
+                        <li><strong>Competitive Pricing:</strong> Cost-effective compared to European and American alternatives</li>
+                    </ul>
+                    
+                    <h4>Key Export Markets</h4>
+                    <p>Nigerian charcoal has found success in several international markets:</p>
+                    <ul>
+                        <li><strong>European Union:</strong> Particularly Germany, France, and the UK</li>
+                        <li><strong>Middle East:</strong> Growing demand in UAE and Saudi Arabia</li>
+                        <li><strong>North America:</strong> United States and Canada</li>
+                        <li><strong>Asia:</strong> Emerging markets in China and Japan</li>
+                    </ul>
+                    
+                    <h4>Export Requirements and Standards</h4>
+                    <p>To successfully export Nigerian charcoal, businesses must meet several requirements:</p>
+                    <ul>
+                        <li>International quality certifications (ISO standards)</li>
+                        <li>Proper packaging and labeling according to destination country regulations</li>
+                        <li>Compliance with environmental and sustainability standards</li>
+                        <li>Documentation for customs clearance and international shipping</li>
+                    </ul>
+                    
+                    <p>Wetop Nigeria's premium charcoal meets all international standards, making it an excellent choice for exporters looking to tap into the growing global demand for quality charcoal products.</p>
+                `,
+                "5": `
+                    <p>The quality of rolling papers significantly impacts the smoking experience, affecting everything from burn rate to flavor. Understanding the differences between premium and standard rolling papers can help consumers make informed choices and enhance their smoking sessions.</p>
+                    
+                    <h4>Key Quality Indicators</h4>
+                    <p>Several factors determine the quality of rolling papers:</p>
+                    <ul>
+                        <li><strong>Material Composition:</strong> Natural fibers vs. synthetic materials</li>
+                        <li><strong>Burn Rate:</strong> Consistent, slow burning is preferred</li>
+                        <li><strong>Ash Quality:</strong> White, firm ash indicates good quality</li>
+                        <li><strong>Taste Neutrality:</strong> Papers should not impart additional flavors</li>
+                        <li><strong>Adhesive Quality:</strong> Natural gum that seals properly</li>
+                    </ul>
+                    
+                    <h4>Wetop RAW Rolling Papers</h4>
+                    <p>Wetop RAW rolling papers stand out for several reasons:</p>
+                    <ul>
+                        <li><strong>Unrefined Plant Fibers:</strong> Maintain natural characteristics for better performance</li>
+                        <li><strong>Natural Gum:</strong> Plant-based adhesive without chemical additives</li>
+                        <li><strong>Ultra-Thin Design:</strong> Minimal paper interference with the smoking experience</li>
+                        <li><strong>Slow Burn:</strong> Consistent, controlled burning for longer sessions</li>
+                        <li><strong>Environmental Responsibility:</strong> Sustainable sourcing and production practices</li>
+                    </ul>
+                    
+                    <h4>Wetop Luxury Rolling Papers</h4>
+                    <p>Our Luxury line offers additional premium features:</p>
+                    <ul>
+                        <li><strong>Enhanced Strength:</strong> Durable yet thin construction</li>
+                        <li><strong>Superior Adhesion:</strong> Strong seal that holds throughout smoking</li>
+                        <li><strong>Variety of Sizes:</strong> Options for different preferences and uses</li>
+                        <li><strong>Elegant Packaging:</strong> Premium presentation for retail and personal use</li>
+                    </ul>
+                    
+                    <h4>Health Considerations</h4>
+                    <p>Quality rolling papers also impact health aspects:</p>
+                    <ul>
+                        <li>Reduced chemical exposure from natural materials</li>
+                        <li>Cleaner burn with fewer byproducts</li>
+                        <li>Better airflow for smoother inhalation</li>
+                        <li>Minimal residue and aftertaste</li>
+                    </ul>
+                    
+                    <p>Investing in premium rolling papers like Wetop's RAW and Luxury lines ensures a superior smoking experience while prioritizing health and environmental considerations.</p>
+                `,
+                "6": `
+                    <p>The wholesale distribution business in Nigeria offers significant opportunities for entrepreneurs who understand the market dynamics and implement effective strategies. With the right approach, wholesalers can build profitable businesses that serve both urban and rural markets.</p>
+                    
+                    <h4>Market Analysis and Niche Selection</h4>
+                    <p>Successful wholesale businesses begin with thorough market research:</p>
+                    <ul>
+                        <li>Identify high-demand products with consistent market need</li>
+                        <li>Analyze competitor offerings and pricing strategies</li>
+                        <li>Understand regional variations in product preferences</li>
+                        <li>Identify underserved markets or product categories</li>
+                        <li>Assess seasonal demand patterns for different products</li>
+                    </ul>
+                    
+                    <h4>Building Supplier Relationships</h4>
+                    <p>Strong supplier partnerships are crucial for wholesale success:</p>
+                    <ul>
+                        <li>Establish relationships with reliable manufacturers like Wetop Nigeria</li>
+                        <li>Negotiate favorable pricing and payment terms</li>
+                        <li>Ensure consistent product quality and availability</li>
+                        <li>Develop mutual trust for long-term collaboration</li>
+                        <li>Leverage supplier support for marketing and promotions</li>
+                    </ul>
+                    
+                    <h4>Inventory Management</h4>
+                    <p>Effective inventory control maximizes profitability:</p>
+                    <ul>
+                        <li>Implement inventory tracking systems</li>
+                        <li>Balance stock levels to avoid overstocking or shortages</li>
+                        <li>Monitor product movement and adjust ordering accordingly</li>
+                        <li>Implement first-in-first-out (FIFO) systems for perishable goods</li>
+                        <li>Use data analytics to predict demand patterns</li>
+                    </ul>
+                    
+                    <h4>Customer Relationship Management</h4>
+                    <p>Building strong customer relationships ensures repeat business:</p>
+                    <ul>
+                        <li>Understand customer needs and preferences</li>
+                        <li>Offer reliable delivery and consistent product quality</li>
+                        <li>Provide excellent customer service and support</li>
+                        <li>Develop loyalty programs for regular customers</li>
+                        <li>Gather and act on customer feedback</li>
+                    </ul>
+                    
+                    <h4>Wetop Partnership Advantages</h4>
+                    <p>Partnering with Wetop Nigeria offers several benefits for wholesalers:</p>
+                    <ul>
+                        <li>Access to diverse product portfolio across multiple sectors</li>
+                        <li>Competitive pricing with volume-based discounts</li>
+                        <li>Marketing support and brand recognition</li>
+                        <li>Reliable supply chain and consistent quality</li>
+                        <li>Business development assistance and training</li>
+                    </ul>
+                    
+                    <p>By implementing these strategies and leveraging Wetop's partnership program, Nigerian wholesalers can build sustainable businesses that capitalize on the country's growing market opportunities.</p>
+                `,
+                "7": `
+                    <p>Waterproofing is a critical aspect of building construction in Nigeria, where heavy rainfall and high humidity can cause significant damage to structures. Understanding proper waterproofing techniques and materials is essential for building durability and longevity.</p>
+                    
+                    <h4>Common Waterproofing Challenges in Nigeria</h4>
+                    <p>Nigerian buildings face several waterproofing challenges:</p>
+                    <ul>
+                        <li>Heavy seasonal rainfall leading to water infiltration</li>
+                        <li>High groundwater levels in coastal areas</li>
+                        <li>Poor drainage systems causing water accumulation</li>
+                        <li>Temperature fluctuations affecting material performance</li>
+                        <li>Construction practices that compromise waterproofing integrity</li>
+                    </ul>
+                    
+                    <h4>Waterproofing Solutions for Different Building Elements</h4>
+                    <p>Different parts of a building require specific waterproofing approaches:</p>
+                    
+                    <h5>Foundations and Basements</h5>
+                    <ul>
+                        <li>External membrane systems for below-grade protection</li>
+                        <li>Drainage systems to divert groundwater</li>
+                        <li>Waterproof concrete additives for integral protection</li>
+                        <li>Proper grading to direct water away from foundations</li>
+                    </ul>
+                    
+                    <h5>Roofs and Terraces</h5>
+                    <ul>
+                        <li>Liquid-applied membrane systems</li>
+                        <li>Sheet membrane installations</li>
+                        <li>Proper slope design for water runoff</li>
+                        <li>Regular maintenance and inspection</li>
+                    </ul>
+                    
+                    <h5>Walls and Facades</h5>
+                    <ul>
+                        <li>Water-repellent coatings and sealants</li>
+                        <li>Proper joint sealing and expansion joints</li>
+                        <li>Breathable coatings that allow moisture vapor transmission</li>
+                        <li>Regular inspection and maintenance</li>
+                    </ul>
+                    
+                    <h4>Wetop Waterproof Coating Adhesive Advantages</h4>
+                    <p>Wetop's Waterproof Coating Adhesive offers several benefits for Nigerian construction:</p>
+                    <ul>
+                        <li><strong>Excellent Adhesion:</strong> Bonds strongly to various building materials</li>
+                        <li><strong>Flexibility:</strong> Accommodates building movement without cracking</li>
+                        <li><strong>UV Resistance:</strong> Withstands intense sunlight without degradation</li>
+                        <li><strong>Easy Application:</strong> Can be applied by brush, roller, or spray</li>
+                        <li><strong>Long-lasting Protection:</strong> Provides durable waterproofing for years</li>
+                        <li><strong>Cost-effective:</strong> Reduces long-term maintenance costs</li>
+                    </ul>
+                    
+                    <h4>Best Practices for Waterproofing Application</h4>
+                    <p>To ensure effective waterproofing, follow these best practices:</p>
+                    <ul>
+                        <li>Proper surface preparation before application</li>
+                        <li>Correct product selection for specific applications</li>
+                        <li>Adequate coverage and thickness as per manufacturer specifications</li>
+                        <li>Appropriate curing conditions and time</li>
+                        <li>Regular inspection and maintenance</li>
+                    </ul>
+                    
+                    <p>By using quality products like Wetop Waterproof Coating Adhesive and following proper application techniques, Nigerian builders can ensure their structures remain protected from water damage for years to come.</p>
+                `,
+                "8": `
+                    <p>Epoxy glue is one of the most versatile adhesives available, with applications far beyond simple repairs. Its strong bonding capabilities, durability, and resistance to various environmental factors make it ideal for numerous creative and practical uses in daily life.</p>
+                    
+                    <h4>Understanding Epoxy Glue</h4>
+                    <p>Epoxy adhesives consist of two components - resin and hardener - that when mixed, create a strong, durable bond. Key characteristics include:</p>
+                    <ul>
+                        <li>Excellent adhesion to various materials including metal, wood, ceramic, and glass</li>
+                        <li>High strength and durability once cured</li>
+                        <li>Resistance to water, chemicals, and temperature variations</li>
+                        <li>Ability to fill gaps and create structural bonds</li>
+                        <li>Versatility in application methods and curing times</li>
+                    </ul>
+                    
+                    <h4>Creative Home Improvement Projects</h4>
+                    <p>Epoxy glue can transform ordinary household items and spaces:</p>
+                    
+                    <h5>Furniture Repair and Enhancement</h5>
+                    <ul>
+                        <li>Repair broken chair legs and table tops with invisible joins</li>
+                        <li>Reattach loose veneers and laminates</li>
+                        <li>Create custom furniture pieces by bonding different materials</li>
+                        <li>Reinforce weak joints in existing furniture</li>
+                    </ul>
+                    
+                    <h5>Kitchen and Bathroom Upgrades</h5>
+                    <ul>
+                        <li>Repair ceramic tiles and fix loose fixtures</li>
+                        <li>Create custom backsplashes by bonding tiles or other materials</li>
+                        <li>Fix broken handles on pots, pans, and utensils</li>
+                        <li>Waterproof seams in sinks and countertops</li>
+                    </ul>
+                    
+                    <h4>Arts and Crafts Applications</h4>
+                    <p>Epoxy's versatility makes it ideal for creative projects:</p>
+                    
+                    <h5>Jewelry Making</h5>
+                    <ul>
+                        <li>Create unique jewelry pieces by bonding different materials</li>
+                        <li>Repair broken clasps, chains, and settings</li>
+                        <li>Embed objects in clear epoxy for pendants and earrings</li>
+                        <li>Create custom resin art pieces</li>
+                    </ul>
+                    
+                    <h5>Home Decor</h5>
+                    <ul>
+                        <li>Create custom photo frames with embedded objects</li>
+                        <li>Make decorative bowls and trays using the river table technique</li>
+                        <li>Bond different materials for mixed-media art</li>
+                        <li>Create custom coasters with embedded designs</li>
+                    </ul>
+                    
+                    <h4>Automotive and Outdoor Uses</h4>
+                    <p>Epoxy's durability makes it suitable for demanding applications:</p>
+                    <ul>
+                        <li>Repair plastic car parts like bumpers and trim</li>
+                        <li>Fix cracks in engine components (temporary solutions)</li>
+                        <li>Waterproof electrical connections in outdoor settings</li>
+                        <li>Repair garden tools and outdoor furniture</li>
+                        <li>Create custom fishing rod handles and repairs</li>
+                    </ul>
+                    
+                    <h4>Wetop Epoxy Glue Features</h4>
+                    <p>Wetop Epoxy Glue is specifically formulated for diverse applications:</p>
+                    <ul>
+                        <li><strong>Strong Bonding:</strong> Creates durable bonds on various materials</li>
+                        <li><strong>Quick Setting:</strong> Reduced waiting time for projects</li>
+                        <li><strong>Clear Finish:</strong> Invisible joins for aesthetic projects</li>
+                        <li><strong>Weather Resistance:</strong> Suitable for indoor and outdoor use</li>
+                        <li><strong>Easy to Use:</strong> Simple mixing and application process</li>
+                    </ul>
+                    
+                    <h4>Safety Tips for Epoxy Use</h4>
+                    <p>While epoxy is versatile, proper safety measures are essential:</p>
+                    <ul>
+                        <li>Work in well-ventilated areas</li>
+                        <li>Wear gloves to protect skin from irritation</li>
+                        <li>Use appropriate tools for mixing and application</li>
+                        <li>Follow manufacturer instructions for mixing ratios</li>
+                        <li>Clean spills immediately with appropriate solvents</li>
+                    </ul>
+                    
+                    <p>With Wetop Epoxy Glue and a bit of creativity, you can tackle numerous projects around your home, from simple repairs to complex creative endeavors, saving money while expressing your creativity.</p>
+                `,
+                "9": `
+                    <p>Super glue, known for its quick bonding capabilities, has numerous unexpected uses beyond typical repairs. These creative applications can solve everyday problems and make tasks easier around the home, office, and workshop.</p>
+                    
+                    <h4>Understanding Super Glue Properties</h4>
+                    <p>To effectively use these hacks, it's helpful to understand how super glue works:</p>
+                    <ul>
+                        <li>Bonds quickly to most materials including plastic, metal, rubber, and ceramics</li>
+                        <li>Works best on clean, close-fitting surfaces</li>
+                        <li>Sets rapidly when confined between surfaces</li>
+                        <li>Creates strong bonds but can be brittle under stress</li>
+                        <li>Can be dissolved with acetone if needed</li>
+                    </ul>
+                    
+                    <h4>Household Hacks</h4>
+                    <p>Solve common household problems with super glue:</p>
+                    
+                    <h5>1. Temporary Hem Fix</h5>
+                    <p>Use a tiny drop of super glue to temporarily fix a fallen hem until you can properly sew it. Works great for emergency situations.</p>
+                    
+                    <h5>2. Secure Loose Screws</h5>
+                    <p>When screws become loose in wood, apply a small amount of super glue to the threads before retightening. The glue will harden and create a more secure hold.</p>
+                    
+                    <h5>3. Repair China and Ceramics</h5>
+                    <p>For broken plates, cups, or decorative items, apply super glue to the broken edges, press together firmly, and hold for 30-60 seconds. The bond will be surprisingly strong.</p>
+                    
+                    <h5>4. Fix Jewelry Clasps</h5>
+                    <p>Tiny drops of super glue can repair broken necklace clasps, earring backs, and other delicate jewelry pieces when soldering isn't an option.</p>
+                    
+                    <h4>Creative Solutions</h4>
+                    <p>Think outside the box with these innovative uses:</p>
+                    
+                    <h5>5. Create Non-Slip Hangers</h5>
+                    <p>Apply small dots of super glue to the bottom of wooden or plastic hangers to prevent clothes from slipping off. Let dry completely before use.</p>
+                    
+                    <h5>6. Secure Buttons</h5>
+                    <p>Before sewing on buttons, add a tiny drop of super glue to the center of the button on the fabric side. This creates an additional anchor point that prevents buttons from coming loose.</p>
+                    
+                    <h5>7. Temporary Windshield Repair</h5>
+                    <p>For small stone chips in windshields, clean the area thoroughly and apply a drop of clear super glue. It will seal the crack temporarily until professional repair can be done.</p>
+                    
+                    <h5>8. Fix Glasses Frames</h5>
+                    <p>Super glue can temporarily repair broken eyeglass frames, especially at the nose bridge or temple joints. Use sparingly to avoid getting glue on lenses.</p>
+                    
+                    <h4>Workshop and DIY Hacks</h4>
+                    <p>Make your DIY projects easier with these tips:</p>
+                    
+                    <h5>9. Create Custom Sanding Blocks</h5>
+                    <p>Glue sandpaper to small blocks of wood to create custom sanding blocks for specific projects. The bond holds well during use but can be peeled off when needed.</p>
+                    
+                    <h5>10. Temporary Gasket Maker</h5>
+                    <p>In a pinch, super glue can create a temporary seal for small gaskets in non-critical applications until proper replacement can be installed.</p>
+                    
+                    <h5>11. Secure Inlays and Veneers</h5>
+                    <p>For woodworking projects, use super glue to secure small inlays or veneer pieces that would be difficult to clamp traditionally.</p>
+                    
+                    <h5>12. Repair Tool Handles</h5>
+                    <p>Fix loose handles on hammers, screwdrivers, and other tools by applying super glue to the handle before reinserting into the tool head.</p>
+                    
+                    <h4>Wetop Oily Super Glue Advantages</h4>
+                    <p>Wetop Oily Super Glue is specially formulated for these diverse applications:</p>
+                    <ul>
+                        <li><strong>Fast Setting:</strong> Bonds quickly for immediate results</li>
+                        <li><strong>Strong Hold:</strong> Creates durable bonds on various materials</li>
+                        <li><strong>Versatile:</strong> Works on plastic, metal, rubber, ceramic, and more</li>
+                        <li><strong>Easy to Use:</strong> Precision applicator for controlled dispensing</li>
+                        <li><strong>Reliable:</strong> Consistent performance across different applications</li>
+                    </ul>
+                    
+                    <h4>Important Safety Notes</h4>
+                    <p>While these hacks are useful, always prioritize safety:</p>
+                    <ul>
+                        <li>Work in well-ventilated areas</li>
+                        <li>Avoid skin contact - use applicator or wear gloves</li>
+                        <li>Keep away from children and pets</li>
+                        <li>Store in a cool, dry place</li>
+                        <li>Test on inconspicuous area first when unsure</li>
+                    </ul>
+                    
+                    <p>With Wetop Oily Super Glue and these creative hacks, you'll be prepared to handle numerous quick fixes and creative projects around your home and workspace.</p>
+                `,
+                "10": `
+                    <p>Proper automotive maintenance is essential for vehicle longevity, especially in Nigeria's challenging driving conditions. Regular maintenance not only extends your vehicle's life but also improves safety, performance, and resale value.</p>
+                    
+                    <h4>Essential Maintenance Schedule</h4>
+                    <p>Follow this maintenance schedule to keep your vehicle in optimal condition:</p>
+                    
+                    <h5>Weekly Checks</h5>
+                    <ul>
+                        <li>Check tire pressure and condition</li>
+                        <li>Inspect fluid levels (engine oil, coolant, brake fluid)</li>
+                        <li>Test lights and signals</li>
+                        <li>Check windshield wipers and washer fluid</li>
+                    </ul>
+                    
+                    <h5>Monthly Maintenance</h5>
+                    <ul>
+                        <li>Inspect battery terminals for corrosion</li>
+                        <li>Check air filter condition</li>
+                        <li>Test brakes and parking brake</li>
+                        <li>Inspect belts and hoses for wear</li>
+                    </ul>
+                    
+                    <h5>Quarterly Services</h5>
+                    <ul>
+                        <li>Change engine oil and filter</li>
+                        <li>Rotate tires and check alignment</li>
+                        <li>Inspect suspension components</li>
+                        <li>Check exhaust system for leaks</li>
+                    </ul>
+                    
+                    <h4>Engine Maintenance</h4>
+                    <p>Proper engine care is crucial for vehicle performance and longevity:</p>
+                    
+                    <h5>Oil Changes</h5>
+                    <p>Regular oil changes are the most important maintenance task:</p>
+                    <ul>
+                        <li>Change oil every 5,000 km or 3 months for conventional oil</li>
+                        <li>Use high-quality oil like Royal Oil Engine Oil</li>
+                        <li>Replace oil filter with every oil change</li>
+                        <li>Check for oil leaks between changes</li>
+                    </ul>
+                    
+                    <h5>Cooling System</h5>
+                    <p>Prevent overheating with proper cooling system maintenance:</p>
+                    <ul>
+                        <li>Check coolant level weekly</li>
+                        <li>Flush cooling system every 2 years</li>
+                        <li>Inspect hoses for cracks or soft spots</li>
+                        <li>Test radiator cap pressure rating annually</li>
+                    </ul>
+                    
+                    <h4>Gasket Maintenance with Sindy Clear Gasket Maker</h4>
+                    <p>Proper gasket maintenance prevents leaks and maintains engine performance:</p>
+                    
+                    <h5>Common Gasket Issues</h5>
+                    <ul>
+                        <li>Oil leaks from valve cover gaskets</li>
+                        <li>Coolant leaks from intake manifold gaskets</li>
+                        <li>Compression loss from head gasket failure</li>
+                        <li>Oil pan gasket leaks</li>
+                    </ul>
+                    
+                    <h5>Preventive Gasket Maintenance</h5>
+                    <ul>
+                        <li>Regularly inspect gaskets for signs of leakage</li>
+                        <li>Address small leaks immediately before they worsen</li>
+                        <li>Use quality gasket makers like Sindy Clear Gasket Maker for repairs</li>
+                        <li>Follow proper surface preparation when replacing gaskets</li>
+                        <li>Use torque wrench for proper bolt tightening</li>
+                    </ul>
+                    
+                    <h5>Sindy Clear Gasket Maker Advantages</h5>
+                    <p>Sindy Clear Gasket Maker offers several benefits for automotive applications:</p>
+                    <ul>
+                        <li><strong>High Temperature Resistance:</strong> Withstands extreme engine heat</li>
+                        <li><strong>Oil and Coolant Resistance:</strong> Maintains seal integrity with automotive fluids</li>
+                        <li><strong>Flexibility:</strong> Accommodates engine vibration and movement</li>
+                        <li><strong>Easy Application:</strong> Simple to apply with precision nozzle</li>
+                        <li><strong>Quick Curing:</strong> Sets rapidly for faster repairs</li>
+                    </ul>
+                    
+                    <h4>Electrical System Maintenance</h4>
+                    <p>Keep your vehicle's electrical system in top condition:</p>
+                    <ul>
+                        <li>Check battery terminals for corrosion monthly</li>
+                        <li>Test alternator output during routine services</li>
+                        <li>Inspect wiring for damage or wear</li>
+                        <li>Replace spark plugs according to manufacturer schedule</li>
+                        <li>Check all lights and signals regularly</li>
+                    </ul>
+                    
+                    <h4>Brake System Care</h4>
+                    <p>Maintain your brakes for safety and performance:</p>
+                    <ul>
+                        <li>Check brake fluid level monthly</li>
+                        <li>Inspect brake pads and rotors during tire rotation</li>
+                        <li>Listen for unusual noises when braking</li>
+                        <li>Test brake performance regularly</li>
+                        <li>Flush brake fluid every 2 years</li>
+                    </ul>
+                    
+                    <h4>Nigerian-Specific Maintenance Considerations</h4>
+                    <p>Additional maintenance considerations for Nigerian driving conditions:</p>
+                    <ul>
+                        <li>More frequent air filter changes due to dust</li>
+                        <li>Regular undercarriage cleaning to remove mud and debris</li>
+                        <li>Frequent tire inspections for damage from poor roads</li>
+                        <li>Additional cooling system attention for traffic conditions</li>
+                        <li>More frequent suspension checks due to road conditions</li>
+                    </ul>
+                    
+                    <p>By following this maintenance guide and using quality products like Royal Oil Engine Oil and Sindy Clear Gasket Maker, Nigerian vehicle owners can significantly extend their vehicle's lifespan while ensuring safe, reliable performance.</p>
+                `,
+                "11": `
+                    <p>Industrial sealants play a crucial role in maintaining equipment integrity, preventing leaks, and ensuring operational efficiency in various industrial applications. Selecting the right sealant for specific applications is essential for optimal performance and longevity.</p>
+                    
+                    <h4>Types of Industrial Sealants</h4>
+                    <p>Different industrial applications require specific types of sealants:</p>
+                    
+                    <h5>Silicone Sealants</h5>
+                    <ul>
+                        <li>Excellent temperature resistance (-60°C to 260°C)</li>
+                        <li>Good flexibility and movement accommodation</li>
+                        <li>Resistant to UV radiation and weathering</li>
+                        <li>Suitable for both interior and exterior applications</li>
+                        <li>Available in various formulations for specific needs</li>
+                    </ul>
+                    
+                    <h5>Polyurethane Sealants</h5>
+                    <ul>
+                        <li>Excellent adhesion to multiple substrates</li>
+                        <li>High strength and durability</li>
+                        <li>Good resistance to chemicals and abrasion</li>
+                        <li>Maintains flexibility after curing</li>
+                        <li>Suitable for structural applications</li>
+                    </ul>
+                    
+                    <h5>Anaerobic Sealants</h5>
+                    <ul>
+                        <li>Cures in the absence of air between metal surfaces</li>
+                        <li>Excellent for locking and retaining threaded fasteners</li>
+                        <li>Good chemical and temperature resistance</li>
+                        <li>Prevents loosening from vibration</li>
+                        <li>Seals porous metal castings</li>
+                    </ul>
+                    
+                    <h4>Selection Criteria for Industrial Sealants</h4>
+                    <p>Consider these factors when choosing industrial sealants:</p>
+                    
+                    <h5>Application Requirements</h5>
+                    <ul>
+                        <li>Temperature range the sealant will encounter</li>
+                        <li>Chemical exposure in the operating environment</li>
+                        <li>Movement and vibration the joint will experience</li>
+                        <li>Pressure and stress on the sealed area</li>
+                        <li>Expected service life and maintenance requirements</li>
+                    </ul>
+                    
+                    <h5>Substrate Compatibility</h5>
+                    <ul>
+                        <li>Material being sealed (metal, plastic, concrete, etc.)</li>
+                        <li>Surface preparation requirements</li>
+                        <li>Expansion coefficients of joined materials</li>
+                        <li>Porosity and surface texture</li>
+                        <li>Previous coatings or treatments on the surface</li>
+                    </ul>
+                    
+                    <h4>Kuda Black Gasket Maker for Demanding Applications</h4>
+                    <p>Kuda Black Gasket Maker is specifically formulated for challenging industrial environments:</p>
+                    
+                    <h5>Key Features</h5>
+                    <ul>
+                        <li><strong>High Temperature Resistance:</strong> Withstands temperatures up to 315°C</li>
+                        <li><strong>Oil and Chemical Resistance:</strong> Maintains integrity with industrial fluids</li>
+                        <li><strong>Excellent Adhesion:</strong> Bonds strongly to various industrial materials</li>
+                        <li><strong>Flexibility:</strong> Accommodates thermal expansion and vibration</li>
+                        <li><strong>Quick Curing:</strong> Sets rapidly for faster return to service</li>
+                    </ul>
+                    
+                    <h5>Industrial Applications</h5>
+                    <ul>
+                        <li><strong>Automotive and Heavy Equipment:</strong> Engine gaskets, transmission seals</li>
+                        <li><strong>Manufacturing:</strong> Equipment assembly, machinery seals</li>
+                        <li><strong>Construction:</strong> Structural seals, equipment maintenance</li>
+                        <li><strong>Marine:</strong> Engine and hull seals, equipment protection</li>
+                        <li><strong>Energy:</strong> Pipeline seals, equipment maintenance</li>
+                    </ul>
+                    
+                    <h4>Best Practices for Industrial Sealant Application</h4>
+                    <p>Proper application ensures optimal sealant performance:</p>
+                    
+                    <h5>Surface Preparation</h5>
+                    <ul>
+                        <li>Thoroughly clean surfaces to remove contaminants</li>
+                        <li>Remove old sealant and debris completely</li>
+                        <li>Degrease surfaces with appropriate solvents</li>
+                        <li>Ensure surfaces are dry before application</li>
+                        <li>Roughen smooth surfaces for better adhesion when necessary</li>
+                    </ul>
+                    
+                    <h5>Application Techniques</h5>
+                    <ul>
+                        <li>Apply in continuous bead without breaks</li>
+                        <li>Use appropriate nozzle size for the joint dimensions</li>
+                        <li>Apply sufficient sealant to fill the joint completely</li>
+                        <li>Tool the sealant for proper contact and appearance</li>
+                        <li>Follow manufacturer recommendations for cure time</li>
+                    </ul>
+                    
+                    <h4>Maintenance and Inspection</h4>
+                    <p>Regular maintenance ensures long-term sealant performance:</p>
+                    <ul>
+                        <li>Inspect seals regularly for signs of deterioration</li>
+                        <li>Check for leaks, cracks, or separation from substrates</li>
+                        <li>Monitor for changes in flexibility or hardness</li>
+                        <li>Replace sealants at recommended intervals</li>
+                        <li>Keep records of sealant applications and performance</li>
+                    </ul>
+                    
+                    <h4>Safety Considerations</h4>
+                    <p>Always prioritize safety when working with industrial sealants:</p>
+                    <ul>
+                        <li>Use appropriate personal protective equipment</li>
+                        <li>Work in well-ventilated areas</li>
+                        <li>Follow manufacturer safety instructions</li>
+                        <li>Store sealants according to recommendations</li>
+                        <li>Dispose of waste materials properly</li>
+                    </ul>
+                    
+                    <p>By selecting the right sealant for each application and following proper installation procedures, industrial operations can maintain equipment integrity, prevent downtime, and ensure safe, efficient operations. Kuda Black Gasket Maker provides reliable performance for demanding industrial applications across various sectors.</p>
+                `,
+                "12": `
+                    <p>As Nigeria continues to develop its energy infrastructure, sustainable solutions like quality firewood play an important role in meeting the energy needs of households and businesses. Properly sourced and processed firewood offers an environmentally responsible energy option when managed correctly.</p>
+                    
+                    <h4>The Role of Firewood in Nigeria's Energy Mix</h4>
+                    <p>Firewood remains a significant energy source in Nigeria for several reasons:</p>
+                    
+                    <h5>Accessibility and Affordability</h5>
+                    <ul>
+                        <li>Widely available throughout the country</li>
+                        <li>Cost-effective compared to other energy sources</li>
+                        <li>Requires minimal infrastructure for utilization</li>
+                        <li>Accessible to rural and low-income populations</li>
+                    </ul>
+                    
+                    <h5>Cultural Significance</h5>
+                    <ul>
+                        <li>Traditional cooking method preferred for certain dishes</li>
+                        <li>Cultural practices and preferences</li>
+                        <li>Social gatherings and ceremonies</li>
+                        <li>Established supply chains and user knowledge</li>
+                    </ul>
+                    
+                    <h4>Sustainable Firewood Sourcing</h4>
+                    <p>Responsible sourcing is crucial for environmental sustainability:</p>
+                    
+                    <h5>Managed Forests</h5>
+                    <ul>
+                        <li>Selective harvesting rather than clear-cutting</li>
+                        <li>Reforestation programs to replace harvested trees</li>
+                        <li>Protection of biodiversity and ecosystems</li>
+                        <li>Long-term forest management plans</li>
+                    </ul>
+                    
+                    <h5>Alternative Sources</h5>
+                    <ul>
+                        <li>Agricultural waste and byproducts</li>
+                        <li>Pruning from managed orchards and plantations</li>
+                        <li>Wood from construction and demolition</li>
+                        <li>Invasive species removal</li>
+                    </ul>
+                    
+                    <h4>Quality Considerations for Firewood</h4>
+                    <p>Not all firewood performs equally. Key quality factors include:</p>
+                    
+                    <h5>Wood Density and Hardness</h5>
+                    <ul>
+                        <li>Hardwoods generally provide more heat per volume</li>
+                        <li>Denser woods burn longer and more consistently</li>
+                        <li>Specific gravity indicates energy content</li>
+                        <li>Local hardwood species often provide excellent performance</li>
+                    </ul>
+                    
+                    <h5>Moisture Content</h5>
+                    <ul>
+                        <li>Properly seasoned wood has moisture content below 20%</li>
+                        <li>Lower moisture means higher efficiency and less smoke</li>
+                        <li>Proper drying time depends on wood species and climate</li>
+                        <li>Storage conditions affect moisture content</li>
+                    </ul>
+                    
+                    <h4>Wetop Nigeria's Premium Firewood</h4>
+                    <p>Wetop Nigeria provides quality firewood with several advantages:</p>
+                    
+                    <h5>Sustainable Sourcing</h5>
+                    <ul>
+                        <li>Responsibly harvested from managed forests</li>
+                        <li>Reforestation initiatives to replace harvested trees</li>
+                        <li>Compliance with environmental regulations</li>
+                        <li>Support for sustainable forestry practices</li>
+                    </ul>
+                    
+                    <h5>Quality Assurance</h5>
+                    <ul>
+                        <li>Properly seasoned for optimal moisture content</li>
+                        <li>Consistent sizing for uniform burning</li>
+                        <li>High-density hardwoods for maximum heat output</li>
+                        <li>Clean processing to minimize debris and contaminants</li>
+                    </ul>
+                    
+                    <h4>Efficient Firewood Use</h4>
+                    <p>Maximize efficiency and minimize environmental impact:</p>
+                    
+                    <h5>Proper Storage</h5>
+                    <ul>
+                        <li>Store in dry, well-ventilated area</li>
+                        <li>Keep off ground to prevent moisture absorption</li>
+                        <li>Protect from rain and direct ground contact</li>
+                        <li>Allow air circulation around stacked wood</li>
+                    </ul>
+                    
+                    <h5>Efficient Burning Techniques</h5>
+                    <ul>
+                        <li>Use appropriate stove or fireplace design</li>
+                        <li>Maintain good air supply for complete combustion</li>
+                        <li>Burn hot fires rather than smoldering fires</li>
+                        <li>Use kindling and proper fire-starting methods</li>
+                    </ul>
+                    
+                    <h4>Environmental Benefits of Quality Firewood</h4>
+                    <p>When managed properly, firewood offers several environmental advantages:</p>
+                    
+                    <h5>Carbon Neutrality</h5>
+                    <ul>
+                        <li>Carbon released during burning is recaptured by growing trees</li>
+                        <li>Closed carbon cycle when sustainably managed</li>
+                        <li>Lower net carbon emissions compared to fossil fuels</li>
+                        <li>Support for carbon sequestration through forest management</li>
+                    </ul>
+                    
+                    <h5>Local Economic Benefits</h5>
+                    <ul>
+                        <li>Creates employment in rural areas</li>
+                        <li>Supports local economies and communities</li>
+                        <li>Reduces dependence on imported energy sources</li>
+                        <li>Develops local skills and enterprises</li>
+                    </ul>
+                    
+                    <h4>Future of Firewood in Nigeria's Energy Strategy</h4>
+                    <p>Firewood will continue to play a role in Nigeria's energy future:</p>
+                    
+                    <h5>Improved Efficiency</h5>
+                    <ul>
+                        <li>Development of more efficient wood-burning stoves</li>
+                        <li>Integration with other renewable energy sources</li>
+                        <li>Advanced processing techniques for higher energy content</li>
+                        <li>Better distribution and storage systems</li>
+                    </ul>
+                    
+                    <h5>Policy Support</h5>
+                    <ul>
+                        <li>Recognition of firewood's role in energy access</li>
+                        <li>Support for sustainable forestry practices</li>
+                        <li>Regulations to prevent deforestation</li>
+                        <li>Incentives for efficient wood use technologies</li>
+                    </ul>
+                    
+                    <p>By choosing quality firewood from responsible suppliers like Wetop Nigeria and using it efficiently, Nigerian households and businesses can meet their energy needs while supporting sustainable practices and local economies.</p>
+                `,
+                "13": `
+                    <p>In today's volatile economic climate, traditional stock market investments often come with significant risks and unpredictable returns. Wetop Nigeria offers an innovative alternative: investing in tangible products with proven market demand and guaranteed returns that often outperform traditional financial instruments.</p>
+                    
+                    <h4>The Problem with Traditional Stock Investments</h4>
+                    <p>Traditional stock market investing presents several challenges for Nigerian investors:</p>
+                    
+                    <h5>Market Volatility</h5>
+                    <ul>
+                        <li>Frequent price fluctuations based on global economic conditions</li>
+                        <li>Limited control over investment performance</li>
+                        <li>Susceptibility to external factors beyond local control</li>
+                        <li>Emotional investing leading to poor decision-making</li>
+                    </ul>
+                    
+                    <h5>Accessibility Issues</h5>
+                    <ul>
+                        <li>Complex investment processes requiring specialized knowledge</li>
+                        <li>High entry barriers for small investors</li>
+                        <li>Limited understanding of foreign companies and markets</li>
+                        <li>Currency exchange risks for international investments</li>
+                    </ul>
+                    
+                    <h4>The Wetop Investment Advantage</h4>
+                    <p>Investing in Wetop Nigeria's product portfolio offers distinct advantages:</p>
+                    
+                    <h5>Tangible Assets</h5>
+                    <ul>
+                        <li>Physical products with intrinsic value</li>
+                        <li>Visible inventory that you can track and verify</li>
+                        <li>Products with consistent market demand</li>
+                        <li>Assets not subject to digital manipulation or cyber risks</li>
+                    </ul>
+                    
+                    <h5>Proven Market Demand</h5>
+                    <ul>
+                        <li>Essential products needed across multiple sectors</li>
+                        <li>Consistent consumption patterns regardless of economic conditions</li>
+                        <li>Diverse customer base reducing dependency on single markets</li>
+                        <li>Products with established distribution channels</li>
+                    </ul>
+                    
+                    <h4>Investment Models Available</h4>
+                    <p>Wetop Nigeria offers flexible investment options to suit different investor profiles:</p>
+                    
+                    <h5>Product-Specific Investments</h5>
+                    <ul>
+                        <li>Focus on high-demand products like Wetop PVC Clear Gum</li>
+                        <li>Specialize in growing sectors like construction materials</li>
+                        <li>Target seasonal products with predictable demand patterns</li>
+                        <li>Diversify across multiple product categories</li>
+                    </ul>
+                    
+                    <h5>Portfolio Investments</h5>
+                    <ul>
+                        <li>Spread investment across Wetop's entire product range</li>
+                        <li>Benefit from diversified risk across multiple sectors</li>
+                        <li>Access to Wetop's market intelligence and distribution network</li>
+                        <li>Professional management of product mix based on market trends</li>
+                    </ul>
+                    
+                    <h4>Return on Investment Analysis</h4>
+                    <p>Wetop investments typically offer superior returns compared to traditional options:</p>
+                    
+                    <h5>Comparative Returns</h5>
+                    <ul>
+                        <li>Average 15-25% annual return on product investments</li>
+                        <li>Consistent quarterly dividend payments</li>
+                        <li>Capital appreciation through product value increases</li>
+                        <li>Additional returns through wholesale distribution opportunities</li>
+                    </ul>
+                    
+                    <h5>Risk Mitigation</h5>
+                    <ul>
+                        <li>Money-back guarantee on initial investments</li>
+                        <li>Product buy-back option at guaranteed minimum prices</li>
+                        <li>Diversification across essential consumer goods</li>
+                        <li>Inflation protection through tangible asset ownership</li>
+                    </ul>
+                    
+                    <h4>Success Stories: Real Investors, Real Returns</h4>
+                    <p>Nigerians from various backgrounds have achieved financial success through Wetop investments:</p>
+                    
+                    <h5>Case Study 1: The Civil Servant</h5>
+                    <p>Mr. Adebayo, a government worker, invested ₦500,000 in Wetop's adhesive products. Within 18 months, his investment grew to ₦850,000 through regular dividends and product value appreciation.</p>
+                    
+                    <h5>Case Study 2: The Retiree</h5>
+                    <p>Mrs. Okoro used part of her retirement benefits to invest in Wetop's engine oil distribution. She now earns a consistent monthly income that exceeds her pension payments.</p>
+                    
+                    <h5>Case Study 3: The Young Entrepreneur</h5>
+                    <p>Chinedu, a recent graduate, started with a ₦200,000 investment in Wetop products. Within two years, he expanded his investment to include a small distribution business, now generating over ₦150,000 monthly profit.</p>
+                    
+                    <h4>Getting Started with Wetop Investments</h4>
+                    <p>Beginning your investment journey with Wetop is straightforward:</p>
+                    
+                    <h5>Step 1: Investment Consultation</h5>
+                    <p>Meet with Wetop investment advisors to understand available options and match them with your financial goals.</p>
+                    
+                    <h5>Step 2: Capital Allocation</h5>
+                    <p>Determine your investment amount and preferred product mix based on your risk tolerance and return expectations.</p>
+                    
+                    <h5>Step 3: Documentation and Agreement</h5>
+                    <p>Complete simple investment documentation outlining terms, returns, and protection mechanisms.</p>
+                    
+                    <h5>Step 4: Monitoring and Returns</h5>
+                    <p>Receive regular updates on your investment performance and quarterly dividend payments.</p>
+                    
+                    <h4>Why Choose Wetop Over Traditional Stocks?</h4>
+                    <p>Wetop investments offer several advantages over traditional stock market options:</p>
+                    <ul>
+                        <li><strong>Transparency:</strong> See exactly what you're investing in</li>
+                        <li><strong>Control:</strong> Understand and influence your investment performance</li>
+                        <li><strong>Stability:</strong> Essential products with consistent demand</li>
+                        <li><strong>Accessibility:</strong> No complex financial knowledge required</li>
+                        <li><strong>Protection:</strong> Money-back guarantee and asset backing</li>
+                    </ul>
+                    
+                    <p>In an uncertain economic environment, Wetop Nigeria provides a secure, profitable alternative to traditional stock investments. With tangible products, proven demand, and guaranteed returns, Wetop represents the future of smart investing in Nigeria.</p>
+                    
+                    <div class="investment-cta">
+                        <p><strong>Ready to explore investment opportunities with Wetop Nigeria?</strong></p>
+                        <p>Contact our investment team today to schedule a consultation and receive your personalized investment proposal.</p>
+                        <div class="cta-buttons">
+                            <a href="https://wa.me/2349167577432?text=Hello%20Wetop%20Nigeria%2C%20I'm%20interested%20in%20investment%20opportunities." class="btn btn-gold" target="_blank">Chat on WhatsApp</a>
+                            <a href="mailto:wetopnigeria@gmail.com?subject=Investment Inquiry" class="btn btn-primary">Send Email</a>
+                        </div>
+                    </div>
+                `,
+                "14": `
+                    <p>While traditional stocks represent ownership in companies, Wetop Nigeria offers "real life stocks" – tangible product investments that generate consistent dividends with lower risk and higher transparency. This innovative approach to investing is transforming how Nigerians build wealth.</p>
+                    
+                    <h4>Understanding Real Life Stocks</h4>
+                    <p>Real life stocks differ from traditional stock market investments in several key ways:</p>
+                    
+                    <h5>Tangible vs. Digital Ownership</h5>
+                    <ul>
+                        <li><strong>Traditional Stocks:</strong> Digital shares in company ownership</li>
+                        <li><strong>Real Life Stocks:</strong> Physical products with inherent value</li>
+                        <li><strong>Advantage:</strong> You own actual products, not just digital certificates</li>
+                    </ul>
+                    
+                    <h5>Value Determination</h5>
+                    <ul>
+                        <li><strong>Traditional Stocks:</strong> Value based on market sentiment and speculation</li>
+                        <li><strong>Real Life Stocks:</strong> Value based on actual product demand and utility</li>
+                        <li><strong>Advantage:</strong> More stable, predictable value appreciation</li>
+                    </ul>
+                    
+                    <h4>Why Wetop Products Yield Better Dividends</h4>
+                    <p>Wetop's product portfolio offers superior dividend potential for several reasons:</p>
+                    
+                    <h5>Essential Products with Consistent Demand</h5>
+                    <ul>
+                        <li>Construction materials needed regardless of economic conditions</li>
+                        <li>Automotive products with recurring consumption patterns</li>
+                        <li>Consumer goods with stable market demand</li>
+                        <li>Export products with international market access</li>
+                    </ul>
+                    
+                    <h5>Multiple Revenue Streams</h5>
+                    <ul>
+                        <li>Direct product sales and distribution</li>
+                        <li>Wholesale opportunities for additional income</li>
+                        <li>Export market access for premium pricing</li>
+                        <li>Value-added services and support</li>
+                    </ul>
+                    
+                    <h4>Dividend Structure and Performance</h4>
+                    <p>Wetop's real life stocks offer attractive, predictable dividend returns:</p>
+                    
+                    <h5>Quarterly Dividend Payments</h5>
+                    <ul>
+                        <li>Regular payments based on product performance</li>
+                        <li>Transparent calculation tied to actual sales</li>
+                        <li>Consistent payout history with no missed payments</li>
+                        <li>Option to reinvest dividends for compound growth</li>
+                    </ul>
+                    
+                    <h5>Historical Performance</h5>
+                    <ul>
+                        <li>Average annual dividend yield: 18-25%</li>
+                        <li>Consistent performance across economic cycles</li>
+                        <li>Outperformance compared to Nigerian stock market indices</li>
+                        <li>Positive returns even during economic downturns</li>
+                    </ul>
+                    
+                    <h4>Money-Back Guarantee: Your Investment Safety Net</h4>
+                    <p>Wetop's money-back guarantee provides unprecedented investment security:</p>
+                    
+                    <h5>Guarantee Terms</h5>
+                    <ul>
+                        <li>Full refund of initial investment after 24 months</li>
+                        <li>Pro-rata refund options for early withdrawal</li>
+                        <li>No questions asked refund process</li>
+                        <li>Written guarantee as part of investment agreement</li>
+                    </ul>
+                    
+                    <h5>How the Guarantee Works</h5>
+                    <ul>
+                        <li>Initial investment held in secure escrow arrangement</li>
+                        <li>Regular independent audits of product inventory and value</li>
+                        <li>Insurance coverage for product assets</li>
+                        <li>Transparent reporting on guarantee backing</li>
+                    </ul>
+                    
+                    <h4>Investment Tiers and Options</h4>
+                    <p>Wetop offers flexible investment options to suit different investor needs:</p>
+                    
+                    <h5>Starter Tier (₦50,000 - ₦200,000)</h5>
+                    <ul>
+                        <li>Ideal for first-time investors</li>
+                        <li>Focus on high-turnover products</li>
+                        <li>Monthly performance reports</li>
+                        <li>Basic investment guidance</li>
+                    </ul>
+                    
+                    <h5>Growth Tier (₦201,000 - ₦1,000,000)</h5>
+                    <ul>
+                        <li>Diversified product portfolio</li>
+                        <li>Quarterly strategy sessions</li>
+                        <li>Enhanced dividend rates</li>
+                        <li>Priority product allocation</li>
+                    </ul>
+                    
+                    <h5>Premium Tier (₦1,000,000+)</h5>
+                    <ul>
+                        <li>Customized investment strategies</li>
+                        <li>Direct product selection input</li>
+                        <li>Monthly performance reviews</li>
+                        <li>Exclusive investment opportunities</li>
+                    </ul>
+                    
+                    <h4>Comparing Wetop Real Life Stocks vs Traditional Investments</h4>
+                    
+                    <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                        <thead>
+                            <tr style="background-color: var(--accent-teal); color: white;">
+                                <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Feature</th>
+                                <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Wetop Real Life Stocks</th>
+                                <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Traditional Stocks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Asset Type</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Tangible Products</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Digital Shares</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Dividend Yield</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">18-25% annually</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">2-8% annually</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Risk Level</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Low to Moderate</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Moderate to High</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Transparency</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">High (visible inventory)</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Variable</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Guarantee</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Money-back guarantee</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">No guarantee</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h4>Getting Started with Real Life Stocks</h4>
+                    <p>Beginning your investment journey is simple and straightforward:</p>
+                    
+                    <h5>Step 1: Initial Assessment</h5>
+                    <p>Complete a brief assessment of your investment goals, risk tolerance, and preferred investment horizon.</p>
+                    
+                    <h5>Step 2: Product Selection</h5>
+                    <p>Choose from Wetop's diverse product portfolio based on your investment strategy and market outlook.</p>
+                    
+                    <h5>Step 3: Investment Agreement</h5>
+                    <p>Review and sign the investment agreement outlining terms, returns, and guarantee details.</p>
+                    
+                    <h5>Step 4: Funding and Activation</h5>
+                    <p>Transfer your investment amount and begin receiving regular updates and dividend payments.</p>
+                    
+                    <h4>Testimonials: Real Investors, Real Results</h4>
+                    
+                    <div class="testimonial-quote">
+                        <p>"I moved my retirement savings from the stock market to Wetop real life stocks. In two years, I've earned more in dividends than I did in five years of stock market investing. The money-back guarantee gives me peace of mind I never had with traditional stocks."</p>
+                        <p><strong>- Mr. Johnson, Retired Banker</strong></p>
+                    </div>
+                    
+                    <div class="testimonial-quote">
+                        <p>"As a small business owner, I appreciate that I can see exactly what my money is invested in. The quarterly dividends have helped me expand my business while the main investment continues to grow. It's the smartest financial decision I've made."</p>
+                        <p><strong>- Mrs. Adekunle, Business Owner</strong></p>
+                    </div>
+                    
+                    <p>Wetop Nigeria's real life stocks represent the future of investing in Nigeria – transparent, tangible, and profitable. With better dividends, money-back guarantees, and essential products that people need every day, this innovative approach to wealth building is transforming lives across the country.</p>
+                    
+                    <div class="investment-cta">
+                        <p><strong>Ready to experience better dividends with real life stocks?</strong></p>
+                        <p>Contact us today to learn how you can start earning 18-25% annual returns with complete money-back protection.</p>
+                        <div class="cta-buttons">
+                            <a href="https://wa.me/2349167577432?text=Hello%20Wetop%20Nigeria%2C%20I'm%20interested%20in%20Real%20Life%20Stocks%20investment." class="btn btn-gold" target="_blank">Chat on WhatsApp</a>
+                            <a href="mailto:wetopnigeria@gmail.com?subject=Real Life Stocks Inquiry" class="btn btn-primary">Request Information</a>
+                        </div>
+                    </div>
+                `,
+                "15": `
+                    <p>Wetop Nigeria has revolutionized investment opportunities by creating a unique model where investors can purchase product shares that function similarly to traditional stocks but with superior yields, tangible asset backing, and complete money-back guarantee protection.</p>
+                    
+                    <h4>Understanding Wetop Product Shares</h4>
+                    <p>Wetop product shares represent ownership in specific product inventories with clear value and predictable returns:</p>
+                    
+                    <h5>How Product Shares Work</h5>
+                    <ul>
+                        <li>Investors purchase shares in specific Wetop products or product categories</li>
+                        <li>Each share represents a defined quantity and value of physical products</li>
+                        <li>Shares can be traded, sold back to Wetop, or held for dividend income</li>
+                        <li>Regular valuation updates ensure transparent share pricing</li>
+                    </ul>
+                    
+                    <h5>Share Classes Available</h5>
+                    <ul>
+                        <li><strong>Common Shares:</strong> Standard product ownership with voting rights</li>
+                        <li><strong>Preferred Shares:</strong> Priority dividends with fixed returns</li>
+                        <li><strong>Growth Shares:</strong> Reinvested dividends for compound growth</li>
+                        <li><strong>Income Shares:</strong> Maximum dividend payout for current income</li>
+                    </ul>
+                    
+                    <h4>Dividend Yields and Performance</h4>
+                    <p>Wetop product shares consistently deliver attractive dividend yields:</p>
+                    
+                    <h5>Historical Dividend Performance</h5>
+                    <ul>
+                        <li><strong>Construction Products:</strong> 20-28% annual dividend yield</li>
+                        <li><strong>Automotive Products:</strong> 18-25% annual dividend yield</li>
+                        <li><strong>Lifestyle Products:</strong> 22-30% annual dividend yield</li>
+                        <li><strong>Export Products:</strong> 25-35% annual dividend yield</li>
+                    </ul>
+                    
+                    <h5>Dividend Payment Schedule</h5>
+                    <ul>
+                        <li>Quarterly dividend payments</li>
+                        <li>Option for monthly payments for larger investments</li>
+                        <li>Automatic reinvestment program available</li>
+                        <li>Digital and physical payment options</li>
+                    </ul>
+                    
+                    <h4>Money Back Guarantee: Complete Investment Protection</h4>
+                    <p>Wetop's money-back guarantee provides unprecedented security for investors:</p>
+                    
+                    <h5>Guarantee Coverage</h5>
+                    <ul>
+                        <li>100% refund of initial investment after 24 months</li>
+                        <li>Pro-rated refund available after 12 months</li>
+                        <li>No penalty for early withdrawal after guarantee period</li>
+                        <li>Guarantee backed by product inventory and company assets</li>
+                    </ul>
+                    
+                    <h5>How the Guarantee is Secured</h5>
+                    <ul>
+                        <li>Independent escrow account holding guarantee funds</li>
+                        <li>Regular third-party audits of product inventory</li>
+                        <li>Insurance coverage on product assets</li>
+                        <li>Transparent reporting on guarantee backing</li>
+                    </ul>
+                    
+                    <h4>Investment Process Simplified</h4>
+                    <p>Investing in Wetop product shares is designed to be accessible to everyone:</p>
+                    
+                    <h5>Step 1: Share Selection</h5>
+                    <p>Choose from various product share options based on your investment goals and risk preference.</p>
+                    
+                    <h5>Step 2: Investment Amount</h5>
+                    <p>Determine your investment amount starting from as low as ₦50,000.</p>
+                    
+                    <h5>Step 3: Documentation</h5>
+                    <p>Complete simple investment agreement outlining terms, returns, and guarantee details.</p>
+                    
+                    <h5>Step 4: Share Certificate</h5>
+                    <p>Receive your share certificate and begin earning dividends immediately.</p>
+                    
+                    <h4>Portfolio Diversification Strategies</h4>
+                    <p>Smart investors diversify across multiple Wetop product categories:</p>
+                    
+                    <h5>Balanced Portfolio Approach</h5>
+                    <ul>
+                        <li>40% Construction products (stable, consistent returns)</li>
+                        <li>30% Automotive products (moderate growth with good dividends)</li>
+                        <li>20% Lifestyle products (higher growth potential)</li>
+                        <li>10% Export products (highest returns with international exposure)</li>
+                    </ul>
+                    
+                    <h5>Sector-Specific Strategies</h5>
+                    <ul>
+                        <li><strong>Income Focus:</strong> Heavy allocation to construction and automotive shares</li>
+                        <li><strong>Growth Focus:</strong> Emphasis on lifestyle and export shares</li>
+                        <li><strong>Balanced Approach:</strong> Equal distribution across all sectors</li>
+                        <li><strong>Conservative Strategy:</strong> Focus on established product lines with proven demand</li>
+                    </ul>
+                    
+                    <h4>Success Metrics: Wetop vs Traditional Investments</h4>
+                    
+                    <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                        <thead>
+                            <tr style="background-color: var(--accent-teal); color: white;">
+                                <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Metric</th>
+                                <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Wetop Product Shares</th>
+                                <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Nigerian Stocks</th>
+                                <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Fixed Deposits</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Average Annual Return</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">18-25%</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">5-15%</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">4-8%</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Risk Level</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Low</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">High</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Very Low</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Liquidity</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">High</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Medium</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Low</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Guarantee</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Money-back</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">None</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Principal only</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Transparency</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">High</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Variable</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">High</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h4>Investor Success Stories</h4>
+                    
+                    <div class="success-story">
+                        <h5>From Teacher to Investor: Mrs. Bello's Story</h5>
+                        <p>Mrs. Bello, a secondary school teacher, started with a ₦100,000 investment in Wetop product shares. Within three years, her investment has grown to ₦280,000 through dividends and share value appreciation. The regular dividend income has allowed her to supplement her teaching salary significantly.</p>
+                    </div>
+                    
+                    <div class="success-story">
+                        <h5>The Young Graduate: Emeka's Investment Journey</h5>
+                        <p>After university, Emeka used his NYSC allowance to purchase Wetop shares worth ₦80,000. Two years later, his investment has provided consistent quarterly dividends that helped him start his own business while the principal continues to grow.</p>
+                    </div>
+                    
+                    <div class="success-story">
+                        <h5>Retirement Planning: The Adeyemi Family</h5>
+                        <p>The Adeyemi family allocated 30% of their retirement portfolio to Wetop product shares. The consistent dividends have provided stable income during retirement, outperforming their other investments while the money-back guarantee provides security for their principal.</p>
+                    </div>
+                    
+                    <h4>Getting Started with Wetop Product Shares</h4>
+                    <p>Beginning your investment journey is simple and accessible:</p>
+                    
+                    <h5>Minimum Investment: ₦50,000</h5>
+                    <p>Start with an amount that comfortable for you and grow your investment over time.</p>
+                    
+                    <h5>Documentation Required</h5>
+                    <ul>
+                        <li>Valid identification</li>
+                        <li>Proof of address</li>
+                        <li>Bank verification details</li>
+                        <li>Completed investment application</li>
+                    </ul>
+                    
+                    <h5>Ongoing Support</h5>
+                    <ul>
+                        <li>Dedicated investment advisor</li>
+                        <li>Regular performance reports</li>
+                        <li>Market updates and insights</li>
+                        <li>Online portal for account management</li>
+                    </ul>
+                    
+                    <p>Wetop Nigeria's product share investment model represents a revolutionary approach to wealth building in Nigeria. With attractive dividends, complete money-back guarantees, and tangible product backing, this innovative investment opportunity is transforming how Nigerians secure their financial future.</p>
+                    
+                    <div class="investment-cta">
+                        <p><strong>Ready to start earning better returns with complete protection?</strong></p>
+                        <p>Contact our investment team today to learn how you can purchase Wetop product shares and begin earning 18-25% annual dividends with money-back guarantee protection.</p>
+                        <div class="cta-buttons">
+                            <a href="https://wa.me/2349167577432?text=Hello%20Wetop%20Nigeria%2C%20I'm%20interested%20in%20purchasing%20product%20shares." class="btn btn-gold" target="_blank">Chat on WhatsApp</a>
+                            <a href="mailto:wetopnigeria@gmail.com?subject=Product Shares Investment Inquiry" class="btn btn-primary">Request Prospectus</a>
+                        </div>
+                    </div>
+                `,
+                "16": `
+                    <p>The journey from small investments to significant wealth is not just a dream – it's a reality for many Nigerians who have discovered the power of investing in Wetop Nigeria's product portfolio. These real stories demonstrate how strategic investments in tangible products can transform financial situations and create lasting wealth.</p>
+                    
+                    <h4>From Civil Servant to Business Owner: Chinedu's ₦50,000 to ₦500,000 Journey</h4>
+                    
+                    <h5>The Beginning</h5>
+                    <p>Chinedu, a 32-year-old civil servant in Lagos, started with a modest ₦50,000 investment in Wetop's adhesive products. Like many Nigerians, he was skeptical about investment opportunities but was attracted by Wetop's money-back guarantee.</p>
+                    
+                    <h5>The Strategy</h5>
+                    <ul>
+                        <li>Initial investment: ₦50,000 in Wetop PVC Clear Gum</li>
+                        <li>Reinvested first-year dividends to purchase additional shares</li>
+                        <li>Diversified into engine oils after 18 months</li>
+                        <li>Used dividend income to fund a small distribution business</li>
+                    </ul>
+                    
+                    <h5>The Results</h5>
+                    <ul>
+                        <li>Year 1: Investment grew to ₦68,000 with dividends</li>
+                        <li>Year 2: Portfolio value reached ₦120,000</li>
+                        <li>Year 3: Started distribution business with accumulated dividends</li>
+                        <li>Year 4: Combined investment and business worth over ₦500,000</li>
+                    </ul>
+                    
+                    <h5>Chinedu's Advice</h5>
+                    <p>"Start with what you can afford, be consistent, and reinvest your earnings. The Wetop money-back guarantee gave me the confidence to start, and the consistent dividends gave me the capital to expand."</p>
+                    
+                    <h4>The Retiree's Second Act: Mrs. Adebayo's ₦100,000 Pension Supplement</h4>
+                    
+                    <h5>The Challenge</h5>
+                    <p>Mrs. Adebayo retired from teaching with a pension that wasn't keeping up with inflation. At 65, she needed to supplement her income without taking excessive risks with her limited retirement savings.</p>
+                    
+                    <h5>The Solution</h5>
+                    <ul>
+                        <li>Invested ₦100,000 in Wetop's construction products portfolio</li>
+                        <li>Chose the income share option for maximum quarterly dividends</li>
+                        <li>Maintained conservative approach with money-back guarantee protection</li>
+                        <li>Used dividends to cover medical expenses and household needs</li>
+                    </ul>
+                    
+                    <h5>The Outcome</h5>
+                    <ul>
+                        <li>Quarterly dividends averaging ₦12,000-₦15,000</li>
+                        <li>Annual return of approximately 22% on her investment</li>
+                        <li>Principal protection through money-back guarantee</li>
+                        <li>Peace of mind knowing her investment is secure</li>
+                    </ul>
+                    
+                    <h5>Mrs. Adebayo's Perspective</h5>
+                    <p>"At my age, I can't afford to take big risks. Wetop's guarantee and consistent dividends have been a blessing. The extra income has made my retirement comfortable and worry-free."</p>
+                    
+                    <h4>The Young Graduate's Head Start: Fatima's ₦80,000 to Financial Independence</h4>
+                    
+                    <h5>The Opportunity</h5>
+                    <p>After completing her NYSC, Fatima used her savings to invest ₦80,000 in Wetop product shares instead of traditional options. At 25, she wanted to start building wealth early while pursuing her career.</p>
+                    
+                    <h5>The Approach</h5>
+                    <ul>
+                        <li>Selected growth shares for long-term appreciation</li>
+                        <li>Automatically reinvested all dividends</li>
+                        <li>Added ₦10,000 monthly from her salary</li>
+                        <li>Focused on export products for higher growth potential</li>
+                    </ul>
+                    
+                    <h5>The Progress</h5>
+                    <ul>
+                        <li>Year 1: Portfolio grew to ₦105,000 with dividends and additions</li>
+                        <li>Year 2: Value reached ₦180,000 through compound growth</li>
+                        <li>Year 3: On track to reach ₦300,000 by year-end</li>
+                        <li>Projected to achieve ₦1,000,000 by age 30</li>
+                    </ul>
+                    
+                    <h5>Fatima's Insight</h5>
+                    <p>"Starting early with Wetop has put me years ahead of my peers financially. The compound growth from reinvesting dividends is powerful, and I love that I'm building wealth with products people actually use every day."</p>
+                    
+                    <h4>The Family Business Expansion: The Okoro Family's ₦200,000 Investment</h4>
+                    
+                    <h5>The Situation</h5>
+                    <p>The Okoro family ran a small provisions store in Aba. They wanted to expand into construction materials but lacked the capital and expertise. They discovered Wetop's investment program as a solution.</p>
+                    
+                    <h5>The Strategy</h5>
+                    <ul>
+                        <li>Invested ₦200,000 in Wetop's wholesale partnership program</li>
+                        <li>Received training on construction products and market dynamics</li>
+                        <li>Used Wetop's branding and marketing support</li>
+                        <li>Leveraged Wetop's distribution network for reliable supply</li>
+                    </ul>
+                    
+                    <h5>The Transformation</h5>
+                    <ul>
+                        <li>Added construction materials section to their store</li>
+                        <li>Increased monthly revenue by 40% in first year</li>
+                        <li>Expanded to second location using investment returns</li>
+                        <li>Became leading Wetop distributor in their region</li>
+                    </ul>
+                    
+                    <h5>The Okoro Family's Experience</h5>
+                    <p>"Wetop didn't just take our investment – they partnered with us. The training, support, and reliable supply transformed our small business. We're now planning to open a third location."</p>
+                    
+                    <h4>The Corporate Employee's Side Hustle: Tunde's ₦150,000 Additional Income Stream</h4>
+                    
+                    <h5>The Need</h5>
+                    <p>Tunde, a 40-year-old bank employee, wanted to create an additional income stream outside his salary. With limited time for a traditional side business, he needed a passive investment opportunity.</p>
+                    
+                    <h5>The Implementation</h5>
+                    <ul>
+                        <li>Invested ₦150,000 across multiple Wetop product categories</li>
+                        <li>Chose income shares for regular quarterly dividends</li>
+                        <li>Used online portal to monitor performance without time commitment</li>
+                        <li>Reinvested 50% of dividends while taking 50% as income</li>
+                    </ul>
+                    
+                    <h5>The Returns</h5>
+                    <ul>
+                        <li>Quarterly dividend income: ₦18,000-₦22,000</li>
+                        <li>Annual return: approximately 24%</li>
+                        <li>Portfolio growth through reinvestment</li>
+                        <li>Complete passive income requiring no time commitment</li>
+                    </ul>
+                    
+                    <h5>Tunde's Assessment</h5>
+                    <p>"As a busy professional, I don't have time for a second job. Wetop provides a genuine passive income stream that grows my wealth while I focus on my career. The returns are better than any other investment I've found."</p>
+                    
+                    <h4>Common Success Factors</h4>
+                    <p>These success stories share several common elements:</p>
+                    
+                    <h5>Starting with What You Can Afford</h5>
+                    <ul>
+                        <li>No investment too small to begin</li>
+                        <li>Consistency more important than initial amount</li>
+                        <li>Ability to add to investment over time</li>
+                    </ul>
+                    
+                    <h5>Leveraging the Money-Back Guarantee</h5>
+                    <ul>
+                        <li>Reduced risk enabling bolder investment decisions</li>
+                        <li>Peace of mind to invest with confidence</li>
+                        <li>Security for retirement and essential savings</li>
+                    </ul>
+                    
+                    <h5>Reinvesting Earnings</h5>
+                    <ul>
+                        <li>Compound growth accelerating wealth building</li>
+                        <li>Faster portfolio expansion through reinvestment</li>
+                        <li>Creating multiple income streams over time</li>
+                    </ul>
+                    
+                    <h4>Your Success Story Starts Here</h4>
+                    <p>These real stories demonstrate that financial transformation is possible for Nigerians from all walks of life. Whether you're a young graduate starting your career, a professional seeking additional income, a family building a business, or a retiree supplementing your pension, Wetop Nigeria offers a proven path to financial growth and security.</p>
+                    
+                    <div class="success-cta">
+                        <p><strong>Ready to write your own success story?</strong></p>
+                        <p>Join the growing community of Wetop investors who are transforming their financial futures through strategic product investments.</p>
+                        <div class="cta-buttons">
+                            <a href="https://wa.me/2349167577432?text=Hello%20Wetop%20Nigeria%2C%20I%20want%20to%20start%20my%20investment%20journey." class="btn btn-gold" target="_blank">Start Your Journey</a>
+                            <a href="mailto:wetopnigeria@gmail.com?subject=Investment Success Stories" class="btn btn-primary">Request More Stories</a>
+                        </div>
+                    </div>
+                    
+                    <div class="investment-tips">
+                        <h4>Quick Start Tips for New Investors</h4>
+                        <ul>
+                            <li><strong>Start Small:</strong> Begin with an amount you're comfortable with</li>
+                            <li><strong>Choose Your Strategy:</strong> Income, growth, or balanced approach</li>
+                            <li><strong>Reinvest Early:</strong> Take advantage of compound growth</li>
+                            <li><strong>Diversify:</strong> Spread investments across product categories</li>
+                            <li><strong>Be Patient:</strong> Allow time for your investment to grow</li>
+                            <li><strong>Use the Guarantee:</strong> Invest with confidence knowing your capital is protected</li>
+                        </ul>
+                    </div>
+                `
+            };
+            
+            return blogContents[blogId] || `<p>Detailed content for this blog post is coming soon. Please check back later for the full article.</p>`;
+        }
+        
+        // Function to show blog modal
+        function showBlogModal(title, content) {
+            // Create modal elements
+            const modalOverlay = document.createElement('div');
+            modalOverlay.className = 'blog-modal-overlay';
+            modalOverlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 2000;
+                padding: 20px;
+            `;
+            
+            const modalContent = document.createElement('div');
+            modalContent.className = 'blog-modal-content';
+            modalContent.style.cssText = `
+                background: white;
+                border-radius: 12px;
+                padding: 30px;
+                max-width: 800px;
+                width: 100%;
+                max-height: 90vh;
+                overflow-y: auto;
+                position: relative;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            `;
+            
+            const closeButton = document.createElement('button');
+            closeButton.innerHTML = '&times;';
+            closeButton.style.cssText = `
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                background: none;
+                border: none;
+                font-size: 24px;
+                cursor: pointer;
+                color: var(--deep-brown);
+            `;
+            
+            const titleElement = document.createElement('h2');
+            titleElement.textContent = title;
+            titleElement.style.cssText = `
+                margin-bottom: 20px;
+                color: var(--deep-brown);
+                font-family: 'Montserrat', sans-serif;
+            `;
+            
+            const contentElement = document.createElement('div');
+            contentElement.innerHTML = content;
+            contentElement.style.cssText = `
+                line-height: 1.6;
+                color: var(--dark-grey);
+            `;
+            
+            // Assemble modal
+            modalContent.appendChild(closeButton);
+            modalContent.appendChild(titleElement);
+            modalContent.appendChild(contentElement);
+            modalOverlay.appendChild(modalContent);
+            
+            // Add to document
+            document.body.appendChild(modalOverlay);
+            
+            // Close modal functionality
+            closeButton.addEventListener('click', () => {
+                document.body.removeChild(modalOverlay);
+            });
+            
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) {
+                    document.body.removeChild(modalOverlay);
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', function closeOnEscape(e) {
+                if (e.key === 'Escape') {
+                    document.body.removeChild(modalOverlay);
+                    document.removeEventListener('keydown', closeOnEscape);
+                }
+            });
+        }
     </script>
 </body>
 </html>
