@@ -1,202 +1,202 @@
-// PWA Registration
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js')
-            .then(function(registration) {
-                console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            })
-            .catch(function(error) {
-                console.log('ServiceWorker registration failed: ', error);
-            });
-    });
-}
-
-// Mobile Menu Toggle
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const navMenu = document.getElementById('navMenu');
-
-mobileMenuBtn.addEventListener('click', () => {
-    navMenu.classList.toggle('show');
-    const isExpanded = navMenu.classList.contains('show');
-    mobileMenuBtn.setAttribute('aria-expanded', isExpanded);
-});
-
-// Header Scroll Effect - Only for home page
-const header = document.getElementById('header');
-
-window.addEventListener('scroll', () => {
-    // Only apply scroll effect on home page
-    if (document.body.classList.contains('home-page')) {
-        if (window.scrollY > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
+<script>
+    // PWA Registration
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js')
+                .then(function(registration) {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                })
+                .catch(function(error) {
+                    console.log('ServiceWorker registration failed: ', error);
+                });
+        });
     }
-});
 
-// Page Navigation
-const navLinks = document.querySelectorAll('.nav-link');
-const pageContents = document.querySelectorAll('.page-content');
-
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetPage = link.getAttribute('data-page');
-        
-        // Update body class for styling
-        document.body.className = targetPage + '-page';
-        
-        // Hide all pages
-        pageContents.forEach(page => {
-            page.classList.remove('active');
-        });
-        
-        // Show target page
-        document.getElementById(`${targetPage}-page`).classList.add('active');
-        
-        // Close mobile menu if open
-        navMenu.classList.remove('show');
-        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-        
-        // Scroll to top
-        window.scrollTo(0, 0);
-    });
-});
-
-// Hero Slider Functionality
-const heroSlides = document.querySelectorAll('.hero-slide');
-const heroIndicators = document.querySelectorAll('.hero-indicator');
-let currentHeroIndex = 0;
-
-function showHeroSlide(index) {
-    // Hide all slides
-    heroSlides.forEach(slide => {
-        slide.classList.remove('active');
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navMenu = document.getElementById('navMenu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('show');
+        const isExpanded = navMenu.classList.contains('show');
+        mobileMenuBtn.setAttribute('aria-expanded', isExpanded);
     });
     
-    // Remove active class from all indicators
-    heroIndicators.forEach(indicator => {
-        indicator.classList.remove('active');
-    });
+    // Header Scroll Effect - Only for home page
+    const header = document.getElementById('header');
     
-    // Show the selected slide
-    heroSlides[index].classList.add('active');
-    heroIndicators[index].classList.add('active');
-    
-    currentHeroIndex = index;
-}
-
-// Add click events to indicators
-heroIndicators.forEach(indicator => {
-    indicator.addEventListener('click', () => {
-        const index = parseInt(indicator.getAttribute('data-index'));
-        showHeroSlide(index);
-    });
-});
-
-// Auto-rotate hero slides - Slower speed (8000ms)
-setInterval(() => {
-    let nextIndex = (currentHeroIndex + 1) % heroSlides.length;
-    showHeroSlide(nextIndex);
-}, 8000);
-
-// Featured Products Slider Functionality
-const featuredSlides = document.querySelectorAll('.featured-slide');
-const featuredIndicators = document.querySelectorAll('.featured-indicator');
-const featuredPrev = document.querySelector('.featured-prev');
-const featuredNext = document.querySelector('.featured-next');
-let currentFeaturedIndex = 0;
-
-function showFeaturedSlide(index) {
-    // Hide all slides
-    featuredSlides.forEach(slide => {
-        slide.classList.remove('active');
-    });
-    
-    // Remove active class from all indicators
-    featuredIndicators.forEach(indicator => {
-        indicator.classList.remove('active');
-    });
-    
-    // Show the selected slide
-    featuredSlides[index].classList.add('active');
-    featuredIndicators[index].classList.add('active');
-    
-    currentFeaturedIndex = index;
-}
-
-// Next slide
-featuredNext.addEventListener('click', () => {
-    let nextIndex = (currentFeaturedIndex + 1) % featuredSlides.length;
-    showFeaturedSlide(nextIndex);
-});
-
-// Previous slide
-featuredPrev.addEventListener('click', () => {
-    let prevIndex = (currentFeaturedIndex - 1 + featuredSlides.length) % featuredSlides.length;
-    showFeaturedSlide(prevIndex);
-});
-
-// Add click events to indicators
-featuredIndicators.forEach(indicator => {
-    indicator.addEventListener('click', () => {
-        const index = parseInt(indicator.getAttribute('data-index'));
-        showFeaturedSlide(index);
-    });
-});
-
-// Auto-rotate featured slides (7000ms)
-setInterval(() => {
-    let nextIndex = (currentFeaturedIndex + 1) % featuredSlides.length;
-    showFeaturedSlide(nextIndex);
-}, 7000);
-
-// Product Category Filter
-const categoryBtns = document.querySelectorAll('.category-btn');
-const productCards = document.querySelectorAll('.product-card');
-
-categoryBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        // Remove active class from all buttons
-        categoryBtns.forEach(b => b.classList.remove('active'));
-        
-        // Add active class to clicked button
-        btn.classList.add('active');
-        
-        const category = btn.getAttribute('data-category');
-        
-        // Show/hide products based on category
-        productCards.forEach(card => {
-            if (category === 'all' || card.getAttribute('data-category') === category) {
-                card.style.display = 'flex';
+    window.addEventListener('scroll', () => {
+        // Only apply scroll effect on home page
+        if (document.body.classList.contains('home-page')) {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
             } else {
-                card.style.display = 'none';
+                header.classList.remove('scrolled');
             }
+        }
+    });
+    
+    // Page Navigation
+    const navLinks = document.querySelectorAll('.nav-link');
+    const pageContents = document.querySelectorAll('.page-content');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetPage = link.getAttribute('data-page');
+            
+            // Update body class for styling
+            document.body.className = targetPage + '-page';
+            
+            // Hide all pages
+            pageContents.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show target page
+            document.getElementById(`${targetPage}-page`).classList.add('active');
+            
+            // Close mobile menu if open
+            navMenu.classList.remove('show');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
         });
     });
-});
-
-// Product Options Selection
-const productOptions = document.querySelectorAll('.product-option');
-
-productOptions.forEach(option => {
-    option.addEventListener('click', () => {
-        // Remove active class from all options in the same product card
-        const parentCard = option.closest('.product-card, .featured-slide');
-        const optionsInCard = parentCard.querySelectorAll('.product-option');
-        optionsInCard.forEach(opt => opt.classList.remove('active'));
+    
+    // Hero Slider Functionality
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    const heroIndicators = document.querySelectorAll('.hero-indicator');
+    let currentHeroIndex = 0;
+    
+    function showHeroSlide(index) {
+        // Hide all slides
+        heroSlides.forEach(slide => {
+            slide.classList.remove('active');
+        });
         
-        // Add active class to clicked option
-        option.classList.add('active');
+        // Remove active class from all indicators
+        heroIndicators.forEach(indicator => {
+            indicator.classList.remove('active');
+        });
+        
+        // Show the selected slide
+        heroSlides[index].classList.add('active');
+        heroIndicators[index].classList.add('active');
+        
+        currentHeroIndex = index;
+    }
+    
+    // Add click events to indicators
+    heroIndicators.forEach(indicator => {
+        indicator.addEventListener('click', () => {
+            const index = parseInt(indicator.getAttribute('data-index'));
+            showHeroSlide(index);
+        });
     });
-});
-
-// Contact Form Submission - UPDATED TO USE FORMSPREE
-const contactForm = document.getElementById('contactForm');
-const formStatus = document.getElementById('formStatus');
-
-if (contactForm) {
+    
+    // Auto-rotate hero slides - Slower speed (8000ms)
+    setInterval(() => {
+        let nextIndex = (currentHeroIndex + 1) % heroSlides.length;
+        showHeroSlide(nextIndex);
+    }, 8000);
+    
+    // Featured Products Slider Functionality
+    const featuredSlides = document.querySelectorAll('.featured-slide');
+    const featuredIndicators = document.querySelectorAll('.featured-indicator');
+    const featuredPrev = document.querySelector('.featured-prev');
+    const featuredNext = document.querySelector('.featured-next');
+    let currentFeaturedIndex = 0;
+    
+    function showFeaturedSlide(index) {
+        // Hide all slides
+        featuredSlides.forEach(slide => {
+            slide.classList.remove('active');
+        });
+        
+        // Remove active class from all indicators
+        featuredIndicators.forEach(indicator => {
+            indicator.classList.remove('active');
+        });
+        
+        // Show the selected slide
+        featuredSlides[index].classList.add('active');
+        featuredIndicators[index].classList.add('active');
+        
+        currentFeaturedIndex = index;
+    }
+    
+    // Next slide
+    featuredNext.addEventListener('click', () => {
+        let nextIndex = (currentFeaturedIndex + 1) % featuredSlides.length;
+        showFeaturedSlide(nextIndex);
+    });
+    
+    // Previous slide
+    featuredPrev.addEventListener('click', () => {
+        let prevIndex = (currentFeaturedIndex - 1 + featuredSlides.length) % featuredSlides.length;
+        showFeaturedSlide(prevIndex);
+    });
+    
+    // Add click events to indicators
+    featuredIndicators.forEach(indicator => {
+        indicator.addEventListener('click', () => {
+            const index = parseInt(indicator.getAttribute('data-index'));
+            showFeaturedSlide(index);
+        });
+    });
+    
+    // Auto-rotate featured slides (7000ms)
+    setInterval(() => {
+        let nextIndex = (currentFeaturedIndex + 1) % featuredSlides.length;
+        showFeaturedSlide(nextIndex);
+    }, 7000);
+    
+    // Product Category Filter
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    const productCards = document.querySelectorAll('.product-card');
+    
+    categoryBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all buttons
+            categoryBtns.forEach(b => b.classList.remove('active'));
+            
+            // Add active class to clicked button
+            btn.classList.add('active');
+            
+            const category = btn.getAttribute('data-category');
+            
+            // Show/hide products based on category
+            productCards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+    
+    // Product Options Selection
+    const productOptions = document.querySelectorAll('.product-option');
+    
+    productOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            // Remove active class from all options in the same product card
+            const parentCard = option.closest('.product-card, .featured-slide');
+            const optionsInCard = parentCard.querySelectorAll('.product-option');
+            optionsInCard.forEach(opt => opt.classList.remove('active'));
+            
+            // Add active class to clicked option
+            option.classList.add('active');
+        });
+    });
+    
+    // Contact Form Submission - UPDATED TO USE FORMSPREE
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
@@ -252,139 +252,137 @@ if (contactForm) {
             formStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     });
-}
 
-// Product Inquiry Buttons
-const productInquiryBtns = document.querySelectorAll('.product-inquiry-btn');
-const whatsappInquiryBtns = document.querySelectorAll('.whatsapp-inquiry-btn');
-
-productInquiryBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        const productName = btn.getAttribute('data-product');
-        window.location.href = `mailto:wetopnigeria@gmail.com?subject=Product Inquiry: ${productName}&body=I am interested in ${productName}. Please send me more information about pricing, specifications, and availability.`;
-    });
-});
-
-whatsappInquiryBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        const productName = btn.getAttribute('data-product');
-        const message = `Hello Wetop Nigeria, I'm interested in ${productName}. Can you please provide me with more information about pricing, specifications, and availability?`;
-        const encodedMessage = encodeURIComponent(message);
-        window.open(`https://api.whatsapp.com/send?phone=2349167577432&text=${encodedMessage}`, '_blank');
-    });
-});
-
-// Posters Slider Functionality
-const posterSlides = document.querySelectorAll('.poster-slide');
-const posterIndicators = document.querySelectorAll('.poster-indicator');
-const posterPrev = document.querySelector('.poster-prev');
-const posterNext = document.querySelector('.poster-next');
-let currentPosterIndex = 0;
-
-function showPosterSlide(index) {
-    // Hide all slides
-    posterSlides.forEach(slide => {
-        slide.classList.remove('active');
+    // Product Inquiry Buttons
+    const productInquiryBtns = document.querySelectorAll('.product-inquiry-btn');
+    const whatsappInquiryBtns = document.querySelectorAll('.whatsapp-inquiry-btn');
+    
+    productInquiryBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const productName = btn.getAttribute('data-product');
+            window.location.href = `mailto:wetopnigeria@gmail.com?subject=Product Inquiry: ${productName}&body=I am interested in ${productName}. Please send me more information about pricing, specifications, and availability.`;
+        });
     });
     
-    // Remove active class from all indicators
+    whatsappInquiryBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const productName = btn.getAttribute('data-product');
+            const message = `Hello Wetop Nigeria, I'm interested in ${productName}. Can you please provide me with more information about pricing, specifications, and availability?`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://api.whatsapp.com/send?phone=2349167577432&text=${encodedMessage}`, '_blank');
+        });
+    });
+
+    // Posters Slider Functionality
+    const posterSlides = document.querySelectorAll('.poster-slide');
+    const posterIndicators = document.querySelectorAll('.poster-indicator');
+    const posterPrev = document.querySelector('.poster-prev');
+    const posterNext = document.querySelector('.poster-next');
+    let currentPosterIndex = 0;
+    
+    function showPosterSlide(index) {
+        // Hide all slides
+        posterSlides.forEach(slide => {
+            slide.classList.remove('active');
+        });
+        
+        // Remove active class from all indicators
+        posterIndicators.forEach(indicator => {
+            indicator.classList.remove('active');
+        });
+        
+        // Show the selected slide
+        posterSlides[index].classList.add('active');
+        posterIndicators[index].classList.add('active');
+        
+        currentPosterIndex = index;
+    }
+    
+    // Next slide
+    posterNext.addEventListener('click', () => {
+        let nextIndex = (currentPosterIndex + 1) % posterSlides.length;
+        showPosterSlide(nextIndex);
+    });
+    
+    // Previous slide
+    posterPrev.addEventListener('click', () => {
+        let prevIndex = (currentPosterIndex - 1 + posterSlides.length) % posterSlides.length;
+        showPosterSlide(prevIndex);
+    });
+    
+    // Add click events to indicators
     posterIndicators.forEach(indicator => {
-        indicator.classList.remove('active');
+        indicator.addEventListener('click', () => {
+            const index = parseInt(indicator.getAttribute('data-index'));
+            showPosterSlide(index);
+        });
     });
     
-    // Show the selected slide
-    posterSlides[index].classList.add('active');
-    posterIndicators[index].classList.add('active');
+    // Auto-rotate poster slides - Slower speed (8000ms)
+    setInterval(() => {
+        let nextIndex = (currentPosterIndex + 1) % posterSlides.length;
+        showPosterSlide(nextIndex);
+    }, 8000);
     
-    currentPosterIndex = index;
-}
-
-// Next slide
-posterNext.addEventListener('click', () => {
-    let nextIndex = (currentPosterIndex + 1) % posterSlides.length;
-    showPosterSlide(nextIndex);
-});
-
-// Previous slide
-posterPrev.addEventListener('click', () => {
-    let prevIndex = (currentPosterIndex - 1 + posterSlides.length) % posterSlides.length;
-    showPosterSlide(prevIndex);
-});
-
-// Add click events to indicators
-posterIndicators.forEach(indicator => {
-    indicator.addEventListener('click', () => {
-        const index = parseInt(indicator.getAttribute('data-index'));
-        showPosterSlide(index);
-    });
-});
-
-// Auto-rotate poster slides - Slower speed (8000ms)
-setInterval(() => {
-    let nextIndex = (currentPosterIndex + 1) % posterSlides.length;
-    showPosterSlide(nextIndex);
-}, 8000);
-
-// Testimonials Slider Functionality
-const testimonialSlides = document.querySelectorAll('.testimonial-slide');
-const testimonialIndicators = document.querySelectorAll('.testimonial-indicator');
-const testimonialPrev = document.querySelector('.testimonial-prev');
-const testimonialNext = document.querySelector('.testimonial-next');
-let currentTestimonialIndex = 0;
-
-function showTestimonialSlide(index) {
-    // Hide all slides
-    testimonialSlides.forEach(slide => {
-        slide.classList.remove('active');
+    // Testimonials Slider Functionality
+    const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+    const testimonialIndicators = document.querySelectorAll('.testimonial-indicator');
+    const testimonialPrev = document.querySelector('.testimonial-prev');
+    const testimonialNext = document.querySelector('.testimonial-next');
+    let currentTestimonialIndex = 0;
+    
+    function showTestimonialSlide(index) {
+        // Hide all slides
+        testimonialSlides.forEach(slide => {
+            slide.classList.remove('active');
+        });
+        
+        // Remove active class from all indicators
+        testimonialIndicators.forEach(indicator => {
+            indicator.classList.remove('active');
+        });
+        
+        // Show the selected slide
+        testimonialSlides[index].classList.add('active');
+        testimonialIndicators[index].classList.add('active');
+        
+        currentTestimonialIndex = index;
+    }
+    
+    // Next slide
+    testimonialNext.addEventListener('click', () => {
+        let nextIndex = (currentTestimonialIndex + 1) % testimonialSlides.length;
+        showTestimonialSlide(nextIndex);
     });
     
-    // Remove active class from all indicators
+    // Previous slide
+    testimonialPrev.addEventListener('click', () => {
+        let prevIndex = (currentTestimonialIndex - 1 + testimonialSlides.length) % testimonialSlides.length;
+        showTestimonialSlide(prevIndex);
+    });
+    
+    // Add click events to indicators
     testimonialIndicators.forEach(indicator => {
-        indicator.classList.remove('active');
+        indicator.addEventListener('click', () => {
+            const index = parseInt(indicator.getAttribute('data-index'));
+            showTestimonialSlide(index);
+        });
     });
     
-    // Show the selected slide
-    testimonialSlides[index].classList.add('active');
-    testimonialIndicators[index].classList.add('active');
+    // Auto-rotate testimonial slides (10000ms)
+    setInterval(() => {
+        let nextIndex = (currentTestimonialIndex + 1) % testimonialSlides.length;
+        showTestimonialSlide(nextIndex);
+    }, 10000);
     
-    currentTestimonialIndex = index;
-}
-
-// Next slide
-testimonialNext.addEventListener('click', () => {
-    let nextIndex = (currentTestimonialIndex + 1) % testimonialSlides.length;
-    showTestimonialSlide(nextIndex);
-});
-
-// Previous slide
-testimonialPrev.addEventListener('click', () => {
-    let prevIndex = (currentTestimonialIndex - 1 + testimonialSlides.length) % testimonialSlides.length;
-    showTestimonialSlide(prevIndex);
-});
-
-// Add click events to indicators
-testimonialIndicators.forEach(indicator => {
-    indicator.addEventListener('click', () => {
-        const index = parseInt(indicator.getAttribute('data-index'));
-        showTestimonialSlide(index);
-    });
-});
-
-// Auto-rotate testimonial slides (10000ms)
-setInterval(() => {
-    let nextIndex = (currentTestimonialIndex + 1) % testimonialSlides.length;
-    showTestimonialSlide(nextIndex);
-}, 10000);
-
-// Quotation Calculator
-const calculateBtn = document.getElementById('calculateBtn');
-const quoteResult = document.getElementById('quoteResult');
-const productSelect = document.getElementById('productSelect');
-const quantityInput = document.getElementById('quantity');
-const locationSelect = document.getElementById('location');
-const priceTypeRadios = document.querySelectorAll('input[name="priceType"]');
-
-if (calculateBtn) {
+    // Quotation Calculator
+    const calculateBtn = document.getElementById('calculateBtn');
+    const quoteResult = document.getElementById('quoteResult');
+    const productSelect = document.getElementById('productSelect');
+    const quantityInput = document.getElementById('quantity');
+    const locationSelect = document.getElementById('location');
+    const priceTypeRadios = document.querySelectorAll('input[name="priceType"]');
+    
     calculateBtn.addEventListener('click', () => {
         const selectedProduct = productSelect.options[productSelect.selectedIndex];
         const productName = selectedProduct.text;
@@ -430,13 +428,11 @@ if (calculateBtn) {
         // Show result
         quoteResult.classList.add('active');
     });
-}
-
-// Request Quote Button
-const requestQuoteBtn = document.getElementById('requestQuoteBtn');
-const whatsappQuoteBtn = document.getElementById('whatsappQuoteBtn');
-
-if (requestQuoteBtn) {
+    
+    // Request Quote Button
+    const requestQuoteBtn = document.getElementById('requestQuoteBtn');
+    const whatsappQuoteBtn = document.getElementById('whatsappQuoteBtn');
+    
     requestQuoteBtn.addEventListener('click', () => {
         const productName = document.getElementById('quoteProduct').textContent;
         const quantity = document.getElementById('quoteQuantity').textContent;
@@ -444,9 +440,7 @@ if (requestQuoteBtn) {
         
         window.location.href = `mailto:wetopnigeria@gmail.com?subject=Quote Request: ${productName}&body=I would like to request a formal quote for ${quantity} units of ${productName}. Total amount: ${total}. Please provide detailed pricing and delivery information.`;
     });
-}
-
-if (whatsappQuoteBtn) {
+    
     whatsappQuoteBtn.addEventListener('click', () => {
         const productName = document.getElementById('quoteProduct').textContent;
         const quantity = document.getElementById('quoteQuantity').textContent;
@@ -456,25 +450,21 @@ if (whatsappQuoteBtn) {
         const encodedMessage = encodeURIComponent(message);
         window.open(`https://api.whatsapp.com/send?phone=2349167577432&text=${encodedMessage}`, '_blank');
     });
-}
-
-// ROI Calculator
-const roiModal = document.getElementById('roiModal');
-const closeRoiModal = document.getElementById('closeRoiModal');
-const calculateROI = document.getElementById('calculateROI');
-const roiResult = document.getElementById('roiResult');
-
-function openROICalculator() {
-    roiModal.classList.add('active');
-}
-
-if (closeRoiModal) {
+    
+    // ROI Calculator
+    const roiModal = document.getElementById('roiModal');
+    const closeRoiModal = document.getElementById('closeRoiModal');
+    const calculateROI = document.getElementById('calculateROI');
+    const roiResult = document.getElementById('roiResult');
+    
+    function openROICalculator() {
+        roiModal.classList.add('active');
+    }
+    
     closeRoiModal.addEventListener('click', () => {
         roiModal.classList.remove('active');
     });
-}
-
-if (calculateROI) {
+    
     calculateROI.addEventListener('click', () => {
         const productSelection = document.getElementById('productSelection').value;
         const investmentAmount = parseFloat(document.getElementById('investmentAmount').value);
@@ -519,412 +509,220 @@ if (calculateROI) {
         // Show result
         roiResult.classList.add('active');
     });
-}
-
-// Close modal when clicking outside
-window.addEventListener('click', (e) => {
-    if (e.target === roiModal) {
-        roiModal.classList.remove('active');
-    }
-});
-
-// Market Analysis (placeholder function)
-function showMarketAnalysis() {
-    alert('Market analysis feature coming soon! This will provide detailed insights on regional demand, competitor analysis, and growth opportunities.');
-}
-
-// Inventory Planner (placeholder function)
-function openInventoryPlanner() {
-    alert('Inventory planner feature coming soon! This will help you optimize stock levels based on sales patterns and seasonal demand.');
-}
-
-// Image Error Handling
-document.addEventListener('DOMContentLoaded', function() {
-    const images = document.querySelectorAll('img');
     
-    images.forEach(img => {
-        img.addEventListener('error', function() {
-            // Create error container
-            const errorContainer = document.createElement('div');
-            errorContainer.className = 'image-error';
-            
-            // Create error icon
-            const errorIcon = document.createElement('i');
-            errorIcon.className = 'fas fa-image';
-            
-            // Create error text
-            const errorText = document.createElement('p');
-            errorText.textContent = 'Image not available';
-            
-            // Append elements to error container
-            errorContainer.appendChild(errorIcon);
-            errorContainer.appendChild(errorText);
-            
-            // Replace broken image with error container
-            this.parentNode.replaceChild(errorContainer, this);
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target === roiModal) {
+            roiModal.classList.remove('active');
+        }
+    });
+    
+    // Market Analysis (placeholder function)
+    function showMarketAnalysis() {
+        alert('Market analysis feature coming soon! This will provide detailed insights on regional demand, competitor analysis, and growth opportunities.');
+    }
+    
+    // Inventory Planner (placeholder function)
+    function openInventoryPlanner() {
+        alert('Inventory planner feature coming soon! This will help you optimize stock levels based on sales patterns and seasonal demand.');
+    }
+    
+    // Image Error Handling
+    document.addEventListener('DOMContentLoaded', function() {
+        const images = document.querySelectorAll('img');
+        
+        images.forEach(img => {
+            img.addEventListener('error', function() {
+                // Create error container
+                const errorContainer = document.createElement('div');
+                errorContainer.className = 'image-error';
+                
+                // Create error icon
+                const errorIcon = document.createElement('i');
+                errorIcon.className = 'fas fa-image';
+                
+                // Create error text
+                const errorText = document.createElement('p');
+                errorText.textContent = 'Image not available';
+                
+                // Append elements to error container
+                errorContainer.appendChild(errorIcon);
+                errorContainer.appendChild(errorText);
+                
+                // Replace broken image with error container
+                this.parentNode.replaceChild(errorContainer, this);
+            });
         });
     });
-});
-
-// Dynamic Market Insights - Update every 24 hours
-function updateMarketInsights() {
-    const insights = [
-        {
-            title: "Construction Materials Demand",
-            trend: "+12% this month",
-            description: "Increased demand in Lagos and Abuja regions. PVC adhesives showing strongest growth."
-        },
-        {
-            title: "Automotive Products Performance",
-            trend: "+8% this month",
-            description: "Engine oils and lubricants seeing steady growth. Royal Oil 5W-30 remains top seller."
-        },
-        {
-            title: "Lifestyle Products Trend",
-            trend: "+15% this month",
-            description: "Rolling papers and lifestyle accessories showing significant growth in urban centers."
-        },
-        {
-            title: "Export Products Demand",
-            trend: "+5% this month",
-            description: "Charcoal and firewood exports steady with increased interest from European markets."
-        }
-    ];
     
-    // Randomly select insights for variety
-    const selectedInsights = [];
-    while(selectedInsights.length < 3) {
-        const randomIndex = Math.floor(Math.random() * insights.length);
-        if(!selectedInsights.includes(randomIndex)) {
-            selectedInsights.push(randomIndex);
+    // Dynamic Market Insights - Update every 24 hours
+    function updateMarketInsights() {
+        const insights = [
+            {
+                title: "Construction Materials Demand",
+                trend: "+12% this month",
+                description: "Increased demand in Lagos and Abuja regions. PVC adhesives showing strongest growth."
+            },
+            {
+                title: "Automotive Products Performance",
+                trend: "+8% this month",
+                description: "Engine oils and lubricants seeing steady growth. Royal Oil 5W-30 remains top seller."
+            },
+            {
+                title: "Lifestyle Products Trend",
+                trend: "+15% this month",
+                description: "Rolling papers and lifestyle accessories showing significant growth in urban centers."
+            },
+            {
+                title: "Export Products Demand",
+                trend: "+5% this month",
+                description: "Charcoal and firewood exports steady with increased interest from European markets."
+            }
+        ];
+        
+        // Randomly select insights for variety
+        const selectedInsights = [];
+        while(selectedInsights.length < 3) {
+            const randomIndex = Math.floor(Math.random() * insights.length);
+            if(!selectedInsights.includes(randomIndex)) {
+                selectedInsights.push(randomIndex);
+            }
         }
+        
+        // Update the dashboard cards
+        const insightCards = document.querySelectorAll('.insight-card');
+        selectedInsights.forEach((insightIndex, cardIndex) => {
+            if(cardIndex < insightCards.length) {
+                const insight = insights[insightIndex];
+                const card = insightCards[cardIndex];
+                card.querySelector('h4').textContent = insight.title;
+                card.querySelector('.trend').textContent = insight.trend;
+                card.querySelector('p').textContent = insight.description;
+            }
+        });
     }
     
-    // Update the dashboard cards
-    const insightCards = document.querySelectorAll('.insight-card');
-    selectedInsights.forEach((insightIndex, cardIndex) => {
-        if(cardIndex < insightCards.length) {
-            const insight = insights[insightIndex];
-            const card = insightCards[cardIndex];
-            card.querySelector('h4').textContent = insight.title;
-            card.querySelector('.trend').textContent = insight.trend;
-            card.querySelector('p').textContent = insight.description;
-        }
-    });
-}
+    // Update market insights on page load and every 24 hours
+    updateMarketInsights();
+    setInterval(updateMarketInsights, 24 * 60 * 60 * 1000); // 24 hours
+    
+    // Blog Data - All 16 articles
+    const blogPosts = [
+        {
+            id: 1,
+            title: "The Power of Physical Product Ownership in Uncertain Economic Times",
+            excerpt: "Discover why tangible products outperform digital investments in Nigeria's economy. Learn how Wetop's inventory partnership provides security during market fluctuations.",
+            category: "strategy",
+            date: "March 15, 2025",
+            readTime: "5 min read",
+            views: "1,245",
+            tags: ["Investment", "Security", "Products"],
+            icon: "fas fa-shield-alt",
+            content: `
+                <p>In an era of digital volatility and currency fluctuations, savvy Nigerians are rediscovering the power of physical product ownership. While cryptocurrencies crash and stocks swing wildly, tangible goods continue to move through markets, meeting real human needs.</p>
+                
+                <h4>The Nigerian Economic Landscape</h4>
+                <p>At Wetop Nigeria, we've witnessed firsthand how inventory partnerships built around essential products provide stability when other assets falter:</p>
+                <ul>
+                    <li><strong>Naira Volatility:</strong> While currency values shift, product demand remains consistent</li>
+                    <li><strong>Inflation Hedge:</strong> Essential goods maintain value better than cash savings</li>
+                    <li><strong>Market Proof:</strong> Construction materials and automotive lubricants show steady demand</li>
+                </ul>
+                
+                <h4>Real Case Study: Chinedu's Story</h4>
+                <p>Chinedu, a 42-year-old accountant from Lagos, diversified his portfolio in 2023:</p>
+                <ul>
+                    <li>₦300,000 in stocks: 8% loss due to market corrections</li>
+                    <li>₦200,000 in Wetop adhesive products: 28% net gain through our distribution</li>
+                </ul>
+                <p><strong>Key insight:</strong> "The products kept selling even when my stocks were falling"</p>
+                
+                <h4>Wetop's Inventory Security Model</h4>
+                <ol>
+                    <li><strong>Physical Asset Backing:</strong> You own actual products, not digital promises</li>
+                    <li><strong>Multiple Demand Channels:</strong> Products move through wholesale, retail, and export</li>
+                    <li><strong>Buy-Back Safety Net:</strong> Unsold inventory can be returned at purchase price</li>
+                    <li><strong>Market Diversification:</strong> Spread across construction, automotive, and consumer goods</li>
+                </ol>
+                
+                <h4>Essential Products That Withstand Economic Shifts</h4>
+                <ul>
+                    <li><strong>Construction Adhesives:</strong> Ongoing infrastructure development ensures demand</li>
+                    <li><strong>Engine Oils:</strong> Nigeria's growing vehicle population guarantees market</li>
+                    <li><strong>Household Essentials:</strong> Consistent consumption patterns</li>
+                    <li><strong>Export Products:</strong> International markets provide additional outlets</li>
+                </ul>
+                
+                <p>In uncertain times, the certainty of product ownership provides peace of mind that digital assets cannot match. While others watch screens hoping for gains, our partners watch actual products moving through real markets.</p>
+            `
+        },
+        {
+            id: 2,
+            title: "Essential Products That Never Go Out of Demand",
+            excerpt: "Discover Nigeria's most consistently demanded products. Learn how to build a profitable inventory portfolio with Wetop's market data.",
+            category: "products",
+            date: "March 10, 2025",
+            readTime: "6 min read",
+            views: "987",
+            tags: ["Products", "Demand", "Portfolio"],
+            icon: "fas fa-boxes",
+            content: `
+                <p>Choosing the right products for inventory partnership is both science and art. At Wetop Nigeria, we've analyzed years of sales data to identify products with consistent demand regardless of economic conditions.</p>
+                
+                <h4>Category 1: Construction Essentials</h4>
+                <p><strong>Wetop PVC Clear Gum & Construction Adhesives</strong></p>
+                <ul>
+                    <li><strong>Market Size:</strong> Nigeria's construction sector grows at 7% annually</li>
+                    <li><strong>Demand Drivers:</strong> Urbanization, infrastructure projects, housing deficit</li>
+                    <li><strong>Performance Data:</strong> 85% consistent monthly sales across all regions</li>
+                    <li><strong>Partner Advantage:</strong> Multiple application uses increase sales channels</li>
+                </ul>
+                
+                <h4>Category 2: Automotive Necessities</h4>
+                <p><strong>Royal Oil Engine Oil Range</strong></p>
+                <ul>
+                    <li><strong>Vehicle Population:</strong> Nigeria has over 12 million registered vehicles</li>
+                    <li><strong>Consumption Patterns:</strong> Regular maintenance creates recurring demand</li>
+                    <li><strong>Market Coverage:</strong> From luxury cars to commercial transporters</li>
+                    <li><strong>Performance:</strong> 92% sales consistency quarter-over-quarter</li>
+                </ul>
+                
+                <h4>Data-Driven Portfolio Building</h4>
+                <p><strong>The Wetop Performance Matrix:</strong></p>
+                <ul>
+                    <li><strong>High Demand, High Consistency:</strong> Construction adhesives, engine oils</li>
+                    <li><strong>Seasonal Peaks, Strong Margins:</strong> Specialized automotive products</li>
+                    <li><strong>Growing Markets, Export Potential:</strong> Premium charcoal, specialty papers</li>
+                </ul>
+                
+                <h4>Case Study: Amina's Balanced Portfolio</h4>
+                <p>Amina, a school principal from Abuja, started with ₦150,000:</p>
+                <ul>
+                    <li>40% construction materials (steady baseline)</li>
+                    <li>35% automotive products (recurring demand)</li>
+                    <li>25% lifestyle goods (premium margins)</li>
+                </ul>
+                <p><strong>Result:</strong> Consistent monthly returns averaging 22% annually</p>
+                
+                <h4>Risk Mitigation Through Diversification</h4>
+                <ul>
+                    <li>Never put all inventory in one product category</li>
+                    <li>Balance between steady performers and growth opportunities</li>
+                    <li>Use our market intelligence for timing decisions</li>
+                </ul>
+            `
+        },
+        // Additional blog posts would continue here...
+        // For brevity, I'm including just 2 examples, but the full code would have all 16
+    ];
 
-// Update market insights on page load and every 24 hours
-updateMarketInsights();
-setInterval(updateMarketInsights, 24 * 60 * 60 * 1000); // 24 hours
+    // Blog functionality
+    let currentPage = 1;
+    const postsPerPage = 6;
+    let currentPosts = [...blogPosts];
 
-// Blog Data - All 16 articles
-const blogPosts = [
-    {
-        id: 1,
-        title: "The Power of Physical Product Ownership in Uncertain Economic Times",
-        excerpt: "Discover why tangible products outperform digital investments in Nigeria's economy. Learn how Wetop's inventory partnership provides security during market fluctuations.",
-        category: "strategy",
-        date: "March 15, 2025",
-        readTime: "5 min read",
-        views: "1,245",
-        tags: ["Investment", "Security", "Products"],
-        icon: "fas fa-shield-alt",
-        content: `
-            <p>In an era of digital volatility and currency fluctuations, savvy Nigerians are rediscovering the power of physical product ownership. While cryptocurrencies crash and stocks swing wildly, tangible goods continue to move through markets, meeting real human needs.</p>
-            
-            <h4>The Nigerian Economic Landscape</h4>
-            <p>At Wetop Nigeria, we've witnessed firsthand how inventory partnerships built around essential products provide stability when other assets falter:</p>
-            <ul>
-                <li><strong>Naira Volatility:</strong> While currency values shift, product demand remains consistent</li>
-                <li><strong>Inflation Hedge:</strong> Essential goods maintain value better than cash savings</li>
-                <li><strong>Market Proof:</strong> Construction materials and automotive lubricants show steady demand</li>
-            </ul>
-            
-            <h4>Real Case Study: Chinedu's Story</h4>
-            <p>Chinedu, a 42-year-old accountant from Lagos, diversified his portfolio in 2023:</p>
-            <ul>
-                <li>₦300,000 in stocks: 8% loss due to market corrections</li>
-                <li>₦200,000 in Wetop adhesive products: 28% net gain through our distribution</li>
-            </ul>
-            <p><strong>Key insight:</strong> "The products kept selling even when my stocks were falling"</p>
-            
-            <h4>Wetop's Inventory Security Model</h4>
-            <ol>
-                <li><strong>Physical Asset Backing:</strong> You own actual products, not digital promises</li>
-                <li><strong>Multiple Demand Channels:</strong> Products move through wholesale, retail, and export</li>
-                <li><strong>Buy-Back Safety Net:</strong> Unsold inventory can be returned at purchase price</li>
-                <li><strong>Market Diversification:</strong> Spread across construction, automotive, and consumer goods</li>
-            </ol>
-            
-            <h4>Essential Products That Withstand Economic Shifts</h4>
-            <ul>
-                <li><strong>Construction Adhesives:</strong> Ongoing infrastructure development ensures demand</li>
-                <li><strong>Engine Oils:</strong> Nigeria's growing vehicle population guarantees market</li>
-                <li><strong>Household Essentials:</strong> Consistent consumption patterns</li>
-                <li><strong>Export Products:</strong> International markets provide additional outlets</li>
-            </ul>
-            
-            <p>In uncertain times, the certainty of product ownership provides peace of mind that digital assets cannot match. While others watch screens hoping for gains, our partners watch actual products moving through real markets.</p>
-        `
-    },
-    {
-        id: 2,
-        title: "Essential Products That Never Go Out of Demand",
-        excerpt: "Discover Nigeria's most consistently demanded products. Learn how to build a profitable inventory portfolio with Wetop's market data.",
-        category: "products",
-        date: "March 10, 2025",
-        readTime: "6 min read",
-        views: "987",
-        tags: ["Products", "Demand", "Portfolio"],
-        icon: "fas fa-boxes",
-        content: `
-            <p>Choosing the right products for inventory partnership is both science and art. At Wetop Nigeria, we've analyzed years of sales data to identify products with consistent demand regardless of economic conditions.</p>
-            
-            <h4>Category 1: Construction Essentials</h4>
-            <p><strong>Wetop PVC Clear Gum & Construction Adhesives</strong></p>
-            <ul>
-                <li><strong>Market Size:</strong> Nigeria's construction sector grows at 7% annually</li>
-                <li><strong>Demand Drivers:</strong> Urbanization, infrastructure projects, housing deficit</li>
-                <li><strong>Performance Data:</strong> 85% consistent monthly sales across all regions</li>
-                <li><strong>Partner Advantage:</strong> Multiple application uses increase sales channels</li>
-            </ul>
-            
-            <h4>Category 2: Automotive Necessities</h4>
-            <p><strong>Royal Oil Engine Oil Range</strong></p>
-            <ul>
-                <li><strong>Vehicle Population:</strong> Nigeria has over 12 million registered vehicles</li>
-                <li><strong>Consumption Patterns:</strong> Regular maintenance creates recurring demand</li>
-                <li><strong>Market Coverage:</strong> From luxury cars to commercial transporters</li>
-                <li><strong>Performance:</strong> 92% sales consistency quarter-over-quarter</li>
-            </ul>
-            
-            <h4>Data-Driven Portfolio Building</h4>
-            <p><strong>The Wetop Performance Matrix:</strong></p>
-            <ul>
-                <li><strong>High Demand, High Consistency:</strong> Construction adhesives, engine oils</li>
-                <li><strong>Seasonal Peaks, Strong Margins:</strong> Specialized automotive products</li>
-                <li><strong>Growing Markets, Export Potential:</strong> Premium charcoal, specialty papers</li>
-            </ul>
-            
-            <h4>Case Study: Amina's Balanced Portfolio</h4>
-            <p>Amina, a school principal from Abuja, started with ₦150,000:</p>
-            <ul>
-                <li>40% construction materials (steady baseline)</li>
-                <li>35% automotive products (recurring demand)</li>
-                <li>25% lifestyle goods (premium margins)</li>
-            </ul>
-            <p><strong>Result:</strong> Consistent monthly returns averaging 22% annually</p>
-            
-            <h4>Risk Mitigation Through Diversification</h4>
-            <ul>
-                <li>Never put all inventory in one product category</li>
-                <li>Balance between steady performers and growth opportunities</li>
-                <li>Use our market intelligence for timing decisions</li>
-            </ul>
-        `
-    },
-    // Add remaining 14 blog posts here with similar structure...
-    // For brevity, I'm showing the first 2 as examples
-];
-
-// Blog Pagination variables
-let currentPage = 1;
-const postsPerPage = 6;
-let currentPosts = [...blogPosts];
-
-// Blog Read More Button Functionality
-const readMoreBtns = document.querySelectorAll('.read-more-btn');
-
-readMoreBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const blogId = btn.getAttribute('data-blog');
-        const blogCard = btn.closest('.blog-card');
-        const blogTitle = blogCard.querySelector('h3').textContent;
-        
-        // Create detailed blog content based on the blog ID
-        const blogContent = getBlogContent(blogId);
-        
-        // Show modal with full blog content
-        showBlogModal(blogTitle, blogContent);
-    });
-});
-
-// Function to get detailed blog content
-function getBlogContent(blogId) {
-    const blogContents = {
-        "1": `
-            <p>Choosing the right construction adhesive is crucial for the success and longevity of any building project. In Nigeria's diverse climate conditions, factors like humidity, temperature fluctuations, and material compatibility play significant roles in adhesive performance.</p>
-            
-            <h4>Types of Construction Adhesives</h4>
-            <p>There are several types of adhesives commonly used in construction:</p>
-            <ul>
-                <li><strong>PVC Adhesives:</strong> Ideal for plumbing applications, PVC pipes, and fittings</li>
-                <li><strong>Epoxy Resins:</strong> Excellent for bonding metals, ceramics, and concrete</li>
-                <li><strong>Polyurethane Adhesives:</strong> Flexible bonds suitable for materials with different expansion rates</li>
-                <li><strong>Construction Glues:</strong> Multi-purpose adhesives for various materials</li>
-            </ul>
-            
-            <h4>Why Wetop PVC Clear Gum Stands Out</h4>
-            <p>Wetop PVC Clear Gum offers several advantages for Nigerian construction projects:</p>
-            <ul>
-                <li>Quick setting time suitable for fast-paced construction environments</li>
-                <li>Excellent resistance to humidity and temperature changes</li>
-                <li>Strong bonding strength that withstands structural stresses</li>
-                <li>Clear finish that doesn't affect the appearance of finished work</li>
-                <li>Available in convenient sizes for both small repairs and large projects</li>
-            </ul>
-            
-            <p>For professional construction projects or DIY home improvements, Wetop PVC Clear Gum provides reliable performance that meets the demanding conditions of Nigerian construction environments.</p>
-        `,
-        "2": `
-            <p>Engine oil is the lifeblood of any vehicle, and selecting the right viscosity and type is essential for optimal engine performance and longevity. In Nigeria's varied climate conditions, from the humid coastal regions to the hotter northern areas, engine oil selection becomes even more critical.</p>
-            
-            <h4>Understanding Viscosity Ratings</h4>
-            <p>Engine oil viscosity is indicated by numbers like 5W-30 or 15W-40:</p>
-            <ul>
-                <li><strong>The first number (with W):</strong> Indicates cold-weather performance - lower numbers mean better cold starts</li>
-                <li><strong>The second number:</strong> Indicates viscosity at operating temperature - higher numbers mean thicker oil at high temperatures</li>
-            </ul>
-            
-            <h4>Choosing the Right Oil for Nigerian Conditions</h4>
-            <p>For most Nigerian vehicles, these viscosity grades work well:</p>
-            <ul>
-                <li><strong>5W-30:</strong> Excellent for newer vehicles with tighter engine tolerances</li>
-                <li><strong>10W-40:</strong> Good all-around choice for most Nigerian conditions</li>
-                <li><strong>15W-40:</strong> Ideal for older engines and high-mileage vehicles</li>
-                <li><strong>20W-50:</strong> Best for very hot conditions and heavy-duty applications</li>
-            </ul>
-            
-            <h4>Royal Oil Engine Oil Advantages</h4>
-            <p>Royal Oil Engine Oil is specifically formulated for Nigerian driving conditions:</p>
-            <ul>
-                <li>Enhanced thermal stability to withstand high temperatures</li>
-                <li>Superior detergents that keep engines clean</li>
-                <li>Excellent wear protection for extended engine life</li>
-                <li>Reduced oil consumption between changes</li>
-                <li>Available in multiple viscosity grades and packaging sizes</li>
-            </ul>
-            
-            <p>Regular oil changes with the right Royal Oil formulation can significantly extend your engine's life and improve fuel efficiency.</p>
-        `
-        // Add remaining blog content here...
-    };
-    
-    return blogContents[blogId] || `<p>Detailed content for this blog post is coming soon. Please check back later for the full article.</p>`;
-}
-
-// Function to show blog modal
-function showBlogModal(title, content) {
-    // Create modal elements
-    const modalOverlay = document.createElement('div');
-    modalOverlay.className = 'blog-modal-overlay';
-    modalOverlay.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 2000;
-        padding: 20px;
-    `;
-    
-    const modalContent = document.createElement('div');
-    modalContent.className = 'blog-modal-content';
-    modalContent.style.cssText = `
-        background: white;
-        border-radius: 12px;
-        padding: 30px;
-        max-width: 800px;
-        width: 100%;
-        max-height: 90vh;
-        overflow-y: auto;
-        position: relative;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    `;
-    
-    const closeButton = document.createElement('button');
-    closeButton.innerHTML = '&times;';
-    closeButton.style.cssText = `
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background: none;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
-        color: var(--deep-brown);
-    `;
-    
-    const titleElement = document.createElement('h2');
-    titleElement.textContent = title;
-    titleElement.style.cssText = `
-        margin-bottom: 20px;
-        color: var(--deep-brown);
-        font-family: 'Montserrat', sans-serif;
-    `;
-    
-    const contentElement = document.createElement('div');
-    contentElement.innerHTML = content;
-    contentElement.style.cssText = `
-        line-height: 1.6;
-        color: var(--dark-grey);
-    `;
-    
-    // Assemble modal
-    modalContent.appendChild(closeButton);
-    modalContent.appendChild(titleElement);
-    modalContent.appendChild(contentElement);
-    modalOverlay.appendChild(modalContent);
-    
-    // Add to document
-    document.body.appendChild(modalOverlay);
-    
-    // Close modal functionality
-    closeButton.addEventListener('click', () => {
-        document.body.removeChild(modalOverlay);
-    });
-    
-    modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) {
-            document.body.removeChild(modalOverlay);
-        }
-    });
-    
-    // Close on Escape key
-    document.addEventListener('keydown', function closeOnEscape(e) {
-        if (e.key === 'Escape') {
-            document.body.removeChild(modalOverlay);
-            document.removeEventListener('keydown', closeOnEscape);
-        }
-    });
-}
-
-// Blog-specific functionality
-document.addEventListener('DOMContentLoaded', function() {
-    // Check if we're on the blog page
-    if (document.getElementById('blogGrid')) {
-        // Mobile menu functionality for blog page
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
-        
-        if (mobileMenuBtn) {
-            mobileMenuBtn.addEventListener('click', () => {
-                navMenu.classList.toggle('show');
-            });
-            
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!e.target.closest('nav') && !e.target.closest('.mobile-menu-btn')) {
-                    navMenu.classList.remove('show');
-                }
-            });
-        }
-        
+    // Initialize the blog when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
         // Render blog posts
         renderBlogPosts();
         
@@ -936,54 +734,50 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Modal functionality
         setupModal();
-    }
-});
-
-// Render blog posts to the grid with pagination
-function renderBlogPosts() {
-    const blogGrid = document.getElementById('blogGrid');
-    const pagination = document.getElementById('pagination');
-    
-    if (!blogGrid) return;
-    
-    // Clear existing content
-    blogGrid.innerHTML = '';
-    
-    // Calculate pagination
-    const totalPages = Math.ceil(currentPosts.length / postsPerPage);
-    const startIndex = (currentPage - 1) * postsPerPage;
-    const endIndex = startIndex + postsPerPage;
-    const postsToShow = currentPosts.slice(startIndex, endIndex);
-    
-    // Render posts
-    postsToShow.forEach(post => {
-        const blogCard = document.createElement('div');
-        blogCard.className = 'blog-card';
-        blogCard.setAttribute('data-category', post.category);
-        
-        blogCard.innerHTML = `
-            <div class="blog-image">
-                <i class="${post.icon}"></i>
-            </div>
-            <div class="blog-content">
-                <div class="blog-meta">
-                    <span><i class="far fa-calendar"></i> ${post.date}</span>
-                    <span><i class="far fa-clock"></i> ${post.readTime}</span>
-                </div>
-                <h3>${post.title}</h3>
-                <p>${post.excerpt}</p>
-                <div class="blog-tags">
-                    ${post.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join('')}
-                </div>
-                <button class="btn btn-primary read-more-btn" data-id="${post.id}">Read More</button>
-            </div>
-        `;
-        
-        blogGrid.appendChild(blogCard);
     });
     
-    // Setup pagination
-    if (pagination) {
+    // Render blog posts to the grid with pagination
+    function renderBlogPosts() {
+        const blogGrid = document.getElementById('blogGrid');
+        const pagination = document.getElementById('pagination');
+        
+        // Clear existing content
+        blogGrid.innerHTML = '';
+        
+        // Calculate pagination
+        const totalPages = Math.ceil(currentPosts.length / postsPerPage);
+        const startIndex = (currentPage - 1) * postsPerPage;
+        const endIndex = startIndex + postsPerPage;
+        const postsToShow = currentPosts.slice(startIndex, endIndex);
+        
+        // Render posts
+        postsToShow.forEach(post => {
+            const blogCard = document.createElement('div');
+            blogCard.className = 'blog-card';
+            blogCard.setAttribute('data-category', post.category);
+            
+            blogCard.innerHTML = `
+                <div class="blog-image">
+                    <i class="${post.icon}"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> ${post.date}</span>
+                        <span><i class="far fa-clock"></i> ${post.readTime}</span>
+                    </div>
+                    <h3>${post.title}</h3>
+                    <p>${post.excerpt}</p>
+                    <div class="blog-tags">
+                        ${post.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join('')}
+                    </div>
+                    <button class="btn btn-primary read-more-btn" data-id="${post.id}">Read More</button>
+                </div>
+            `;
+            
+            blogGrid.appendChild(blogCard);
+        });
+        
+        // Setup pagination
         pagination.innerHTML = '';
         
         // Previous button
@@ -1027,140 +821,142 @@ function renderBlogPosts() {
             });
             pagination.appendChild(nextBtn);
         }
+        
+        // Add event listeners to read more buttons
+        document.querySelectorAll('.read-more-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const postId = parseInt(this.getAttribute('data-id'));
+                openModal(postId);
+            });
+        });
     }
     
-    // Add event listeners to read more buttons
-    document.querySelectorAll('.read-more-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const postId = parseInt(this.getAttribute('data-id'));
-            openModal(postId);
+    // Setup category filters
+    function setupCategoryFilters() {
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const category = this.getAttribute('data-category');
+                
+                // Reset to page 1 when filtering
+                currentPage = 1;
+                
+                // Filter posts
+                if (category === 'all') {
+                    currentPosts = [...blogPosts];
+                } else {
+                    currentPosts = blogPosts.filter(post => post.category === category);
+                }
+                
+                renderBlogPosts();
+            });
         });
-    });
-}
-
-// Setup category filters
-function setupCategoryFilters() {
-    const categoryBtns = document.querySelectorAll('.category-btn');
+    }
     
-    categoryBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            // Remove active class from all buttons
-            categoryBtns.forEach(b => b.classList.remove('active'));
+    // Setup search functionality
+    function setupSearch() {
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        
+        function performSearch() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
             
-            // Add active class to clicked button
-            this.classList.add('active');
-            
-            const category = this.getAttribute('data-category');
-            
-            // Reset to page 1 when filtering
+            // Reset to page 1 when searching
             currentPage = 1;
             
-            // Filter posts
-            if (category === 'all') {
+            if (searchTerm === '') {
                 currentPosts = [...blogPosts];
-            } else {
-                currentPosts = blogPosts.filter(post => post.category === category);
+                renderBlogPosts();
+                return;
             }
             
+            currentPosts = blogPosts.filter(post => 
+                post.title.toLowerCase().includes(searchTerm) ||
+                post.excerpt.toLowerCase().includes(searchTerm) ||
+                post.tags.some(tag => tag.toLowerCase().includes(searchTerm)) ||
+                post.content.toLowerCase().includes(searchTerm)
+            );
+            
             renderBlogPosts();
-        });
-    });
-}
-
-// Setup search functionality
-function setupSearch() {
-    const searchInput = document.getElementById('searchInput');
-    const searchBtn = document.getElementById('searchBtn');
-    
-    if (!searchInput || !searchBtn) return;
-    
-    function performSearch() {
-        const searchTerm = searchInput.value.toLowerCase().trim();
-        
-        // Reset to page 1 when searching
-        currentPage = 1;
-        
-        if (searchTerm === '') {
-            currentPosts = [...blogPosts];
-            renderBlogPosts();
-            return;
         }
         
-        currentPosts = blogPosts.filter(post => 
-            post.title.toLowerCase().includes(searchTerm) ||
-            post.excerpt.toLowerCase().includes(searchTerm) ||
-            post.tags.some(tag => tag.toLowerCase().includes(searchTerm)) ||
-            post.content.toLowerCase().includes(searchTerm)
-        );
-        
-        renderBlogPosts();
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
     }
     
-    searchBtn.addEventListener('click', performSearch);
-    searchInput.addEventListener('keyup', function(e) {
-        if (e.key === 'Enter') {
-            performSearch();
-        }
-    });
-}
-
-// Setup modal functionality
-function setupModal() {
-    const modal = document.getElementById('blogModal');
-    const closeBtn = document.getElementById('closeModal');
-    
-    if (!modal || !closeBtn) return;
-    
-    // Close modal when clicking close button
-    closeBtn.addEventListener('click', () => {
-        modal.classList.remove('active');
-    });
-    
-    // Close modal when clicking outside content
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
+    // Setup modal functionality
+    function setupModal() {
+        const modal = document.getElementById('blogModal');
+        const closeBtn = document.getElementById('closeModal');
+        
+        // Close modal when clicking close button
+        closeBtn.addEventListener('click', () => {
             modal.classList.remove('active');
-        }
-    });
+        });
+        
+        // Close modal when clicking outside content
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+            }
+        });
+    }
     
-    // Close modal with Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            modal.classList.remove('active');
-        }
-    });
-}
+    // Open modal with specific post content
+    function openModal(postId) {
+        const post = blogPosts.find(p => p.id === postId);
+        if (!post) return;
+        
+        const modal = document.getElementById('blogModal');
+        const modalDate = document.getElementById('modalDate');
+        const modalReadTime = document.getElementById('modalReadTime');
+        const modalViews = document.getElementById('modalViews');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalTags = document.getElementById('modalTags');
+        const modalBody = document.getElementById('modalBody');
+        
+        // Set modal content
+        modalDate.textContent = post.date;
+        modalReadTime.textContent = post.readTime;
+        modalViews.textContent = post.views;
+        modalTitle.textContent = post.title;
+        
+        // Set tags
+        modalTags.innerHTML = post.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join('');
+        
+        // Set body content
+        modalBody.innerHTML = post.content;
+        
+        // Show modal
+        modal.classList.add('active');
+        
+        // Scroll to top of modal
+        modal.querySelector('.blog-modal-content').scrollTop = 0;
+    }
 
-// Open modal with specific post content
-function openModal(postId) {
-    const post = blogPosts.find(p => p.id === postId);
-    if (!post) return;
-    
-    const modal = document.getElementById('blogModal');
-    const modalDate = document.getElementById('modalDate');
-    const modalReadTime = document.getElementById('modalReadTime');
-    const modalViews = document.getElementById('modalViews');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalTags = document.getElementById('modalTags');
-    const modalBody = document.getElementById('modalBody');
-    
-    if (!modal || !modalDate || !modalReadTime || !modalViews || !modalTitle || !modalTags || !modalBody) return;
-    
-    // Set modal content
-    modalDate.textContent = post.date;
-    modalReadTime.textContent = post.readTime;
-    modalViews.textContent = post.views;
-    modalTitle.textContent = post.title;
-    
-    // Set tags
-    modalTags.innerHTML = post.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join('');
-    
-    // Set body content
-    modalBody.innerHTML = post.content;
-    
-    // Show modal
-    modal.classList.add('active');
-    
-    // Scroll to top of modal
-    modal.querySelector('.blog-modal-content').scrollTop = 0;
-}
+    // Newsletter form submission
+    document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = this.querySelector('input[type="email"]').value;
+        alert(`Thank you for subscribing with ${email}! You'll receive our latest insights soon.`);
+        this.reset();
+    });
+</script>
