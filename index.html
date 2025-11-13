@@ -67,31 +67,7 @@
     </script>
     
     <style>
-        /* ALL THE CSS CODE FROM PREVIOUS RESPONSE GOES HERE */
-        /* This would be the complete CSS we just created */
-        :root {
-            --deep-brown: #5D4037;
-            --warm-brown: #8D6E63;
-            --accent-teal: #26A69A;
-            --light-teal: #80CBC4;
-            --cream: #F5F1E8;
-            --white: #FFFFFF;
-            --light-grey: #F3F4F6;
-            --dark-grey: #4B5563;
-            --gold: #D4AF37;
-            --success-green: #4CAF50;
-            --warning-orange: #FF9800;
-            --error-red: #F44336;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        /* ... REST OF THE CSS ... */
-        
+        /* ALL CSS WILL GO HERE IN PART 2 */
     </style>
 </head>
 <body class="home-page">
@@ -1375,6 +1351,7 @@
             </div>
         </section>
 
+        <!-- Blog Controls -->
         <section class="blog-controls">
             <div class="container controls-container">
                 <div class="search-box">
@@ -1393,6 +1370,7 @@
             </div>
         </section>
 
+        <!-- Blog Section -->
         <section class="blog-section">
             <div class="container">
                 <h2 class="section-title">Latest Articles</h2>
@@ -1408,6 +1386,7 @@
             </div>
         </section>
 
+        <!-- Newsletter Section -->
         <section class="newsletter">
             <div class="container">
                 <h3>Stay Updated</h3>
@@ -1624,40 +1603,7 @@
     </div>
 
     <script>
-        // ALL THE JAVASCRIPT CODE FROM PREVIOUS RESPONSES GOES HERE
-        // This would include all the functionality for:
-        // - Navigation
-        // - Sliders
-        // - Modal functionality
-        // - Form handling
-        // - Blog functionality
-        // - Calculator functionality
-        
-        // PWA Registration
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(function(registration) {
-                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                    })
-                    .catch(function(error) {
-                        console.log('ServiceWorker registration failed: ', error);
-                    });
-            });
-        }
-
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('show');
-            const isExpanded = navMenu.classList.contains('show');
-            mobileMenuBtn.setAttribute('aria-expanded', isExpanded);
-        });
-        
-        // ... REST OF THE JAVASCRIPT ...
-        
+        // ALL JAVASCRIPT WILL GO HERE IN PART 3
     </script>
 </body>
 </html>
