@@ -2481,6 +2481,23 @@
 .blog-modal-body li {
     margin-bottom: 8px;
 }
+        /* Lazy Bounce Animation for Poster Container */
+@keyframes lazyBouncePosterContainer {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Add animation to active poster slide container */
+.poster-slide.active .poster-image {
+    animation: lazyBouncePosterContainer 4s ease-in-out infinite;
+}
     </style>
 </head>
 <body class="home-page">
@@ -5697,6 +5714,7 @@ document.addEventListener('visibilitychange', function() {
 </script>
 </body>
 </html>
+
 
 
 
